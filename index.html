@@ -17,6 +17,7 @@
   --leaf-light:#d4e8a0;
   --bark:#8B6F47;
   --red:#c0392b;
+  --paypal:#009cde;
   --shadow:0 4px 24px rgba(65,79,30,0.13);
   --shadow-hover:0 16px 48px rgba(65,79,30,0.22);
 }
@@ -264,6 +265,17 @@ header{
 .checkout-input.error{border-color:var(--red)}
 .checkout-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .checkout-divider{height:1px;background:var(--cream2);margin:18px 0 16px}
+
+/* ZAHLUNGSART */
+.payment-option{display:flex;align-items:center;gap:10px;cursor:pointer;padding:12px 14px;border:2px solid var(--cream2);border-radius:9px;font-size:0.9rem;transition:border-color .2s, background .2s;font-family:"DM Sans",sans-serif;color:var(--green-dark)}
+.payment-option:hover{border-color:var(--green-mid)}
+.payment-option.selected{border-color:var(--green);background:#f6faf0}
+.payment-option input[type="radio"]{accent-color:var(--green);width:16px;height:16px;flex-shrink:0;cursor:pointer}
+.payment-icon{font-size:1.1rem;flex-shrink:0}
+.payment-text{display:flex;flex-direction:column;gap:2px}
+.payment-title{font-weight:600;font-size:0.88rem}
+.payment-hint{font-size:0.72rem;color:#aaa}
+
 .checkout-summary{background:var(--cream);border-radius:12px;padding:14px 16px;margin-bottom:20px}
 .checkout-summary-title{font-size:0.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--green-mid);margin-bottom:10px}
 .checkout-summary-item{display:flex;justify-content:space-between;font-size:0.82rem;padding:3px 0;color:var(--green-dark)}
@@ -273,7 +285,22 @@ header{
 .checkout-cancel{width:100%;background:transparent;color:#aaa;border:none;padding:12px;font-size:0.85rem;cursor:pointer;font-family:"DM Sans",sans-serif;margin-top:6px}
 .checkout-cancel:hover{color:var(--green-dark)}
 
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--green-dark);color:#fff;padding:11px 22px;border-radius:40px;font-size:0.84rem;z-index:600;transition:transform .3s,opacity .3s;opacity:0;white-space:nowrap;pointer-events:none}
+/* PAYPAL MODAL */
+.paypal-modal-wrap{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:700;display:flex;align-items:center;justify-content:center;padding:20px}
+.paypal-modal{background:#fff;border-radius:20px;padding:28px 24px 24px;max-width:340px;width:100%;text-align:center}
+.paypal-modal-title{font-family:"Playfair Display",serif;font-size:1.2rem;font-weight:900;margin-bottom:6px;color:var(--green-dark)}
+.paypal-modal-sub{font-size:0.82rem;color:#999;margin-bottom:20px}
+.paypal-qr-img{width:200px;height:200px;border-radius:12px;border:2px solid var(--cream2);margin:0 auto 16px;display:block}
+.paypal-amount{font-size:1.5rem;font-weight:700;color:var(--green-dark);margin-bottom:4px}
+.paypal-amount-hint{font-size:0.75rem;color:#aaa;margin-bottom:20px}
+.paypal-link-btn{display:block;width:100%;background:var(--paypal);color:#fff;border:none;border-radius:12px;padding:13px;font-size:0.95rem;font-weight:600;cursor:pointer;font-family:"DM Sans",sans-serif;text-decoration:none;margin-bottom:10px;box-sizing:border-box;transition:background .2s}
+.paypal-link-btn:hover{background:#007ab5}
+.paypal-confirm-btn{width:100%;background:var(--green);color:#fff;border:none;border-radius:12px;padding:14px;font-size:0.95rem;font-weight:600;cursor:pointer;font-family:"DM Sans",sans-serif;transition:background .2s;margin-bottom:6px}
+.paypal-confirm-btn:hover{background:var(--green-mid)}
+.paypal-back-btn{width:100%;background:transparent;color:#aaa;border:none;padding:10px;font-size:0.85rem;cursor:pointer;font-family:"DM Sans",sans-serif}
+.paypal-back-btn:hover{color:var(--green-dark)}
+
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--green-dark);color:#fff;padding:11px 22px;border-radius:40px;font-size:0.84rem;z-index:800;transition:transform .3s,opacity .3s;opacity:0;white-space:nowrap;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
 footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rgba(255,255,255,.4);font-size:0.75rem;border-top:2px solid var(--cream2)}
@@ -417,6 +444,31 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
 
     <div class="checkout-divider"></div>
 
+    <!-- ZAHLUNGSART -->
+    <div class="checkout-field">
+      <label class="checkout-label">Zahlungsart <span>*</span></label>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+        <label class="payment-option" id="pay_label_bar" onclick="selectPayment('bar')">
+          <input type="radio" name="zahlungsart" value="Barzahlung" id="pay_bar">
+          <span class="payment-icon">💵</span>
+          <span class="payment-text">
+            <span class="payment-title">Barzahlung bei Abholung</span>
+            <span class="payment-hint">Bezahlung direkt bei Übergabe</span>
+          </span>
+        </label>
+        <label class="payment-option" id="pay_label_pp" onclick="selectPayment('paypal')">
+          <input type="radio" name="zahlungsart" value="PayPal" id="pay_pp">
+          <span class="payment-icon">🅿</span>
+          <span class="payment-text">
+            <span class="payment-title">PayPal</span>
+            <span class="payment-hint">QR-Code oder Link — du siehst den Betrag direkt</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div class="checkout-divider"></div>
+
     <!-- Bestellübersicht -->
     <div class="checkout-summary">
       <div class="checkout-summary-title">Deine Bestellung</div>
@@ -427,11 +479,31 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
       </div>
     </div>
 
-    <button class="checkout-submit" onclick="submitCheckout()">
+    <button class="checkout-submit" onclick="submitCheckout(false)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
       Jetzt verbindlich bestellen
     </button>
     <button class="checkout-cancel" onclick="closeCheckoutModal()">Abbrechen</button>
+  </div>
+</div>
+
+<!-- PAYPAL MODAL -->
+<div id="paypalModalWrap" class="paypal-modal-wrap" style="display:none">
+  <div class="paypal-modal">
+    <div class="paypal-modal-title">PayPal Zahlung</div>
+    <p class="paypal-modal-sub">Scanne den QR-Code mit deiner PayPal-App<br>oder tippe auf den Button unten</p>
+    <!-- Ersetze "paypal-qr.png" mit deinem eigenen PayPal QR-Code Bild -->
+    <img src="paypal-qr.png" alt="PayPal QR Code" class="paypal-qr-img" onerror="this.style.display='none'">
+    <div class="paypal-amount" id="ppAmount"></div>
+    <div class="paypal-amount-hint">Bitte genau diesen Betrag angeben</div>
+    <!-- WICHTIG: Ersetze "DEINPAYPALNAME" mit deinem echten PayPal.me Namen -->
+    <a id="ppLink" href="#" target="_blank" class="paypal-link-btn">
+      Direkt mit PayPal bezahlen — <span id="ppLinkAmount"></span>
+    </a>
+    <button class="paypal-confirm-btn" onclick="confirmPayPalAndSubmit()">
+      Zahlung bestätigt &amp; Bestellung absenden
+    </button>
+    <button class="paypal-back-btn" onclick="closePayPalModal()">&#8592; Zurück</button>
   </div>
 </div>
 
@@ -443,6 +515,9 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
 </footer>
 
 <script>
+/* ── PAYPAL CONFIG ── */
+var PAYPAL_ME = 'DEINPAYPALNAME'; // <-- hier deinen PayPal.me Namen eintragen
+
 /* ── SVG ICONS ── */
 var ICONS = {
   shirt:    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10l10-4 8 6 8-6 10 4-5 8H33v22H15V18H11L6 10z"/></svg>',
@@ -595,6 +670,7 @@ var currentFilter = 'alle';
 var selectedColors = {};
 var selectedSizes = {};
 var selectedPrintColors = {};
+var selectedPayment = null;
 
 function fmt(n){ return n.toFixed(2).replace('.',',') + ' €'; }
 function stars(n){ var s=''; for(var i=0;i<5;i++) s+=i<n?'★':'☆'; return s; }
@@ -880,6 +956,24 @@ function getCatLabel(c){
   return c;
 }
 
+/* ── ZAHLUNGSART ── */
+function selectPayment(type){
+  selectedPayment = type;
+  var barLabel = document.getElementById('pay_label_bar');
+  var ppLabel  = document.getElementById('pay_label_pp');
+  var barRadio = document.getElementById('pay_bar');
+  var ppRadio  = document.getElementById('pay_pp');
+  if(type === 'bar'){
+    barLabel.classList.add('selected');
+    ppLabel.classList.remove('selected');
+    barRadio.checked = true;
+  } else {
+    ppLabel.classList.add('selected');
+    barLabel.classList.remove('selected');
+    ppRadio.checked = true;
+  }
+}
+
 /* ── CART ── */
 function addToCartFromGrid(id){
   var p=null; for(var i=0;i<P.length;i++) if(P[i].id===id){p=P[i];break;}
@@ -960,7 +1054,6 @@ function toggleCart(){
 function checkout(){
   if(cart.length === 0) return;
 
-  // Bestellübersicht im Modal befüllen
   var sum = 0;
   var itemsHtml = '';
   for(var i = 0; i < cart.length; i++){
@@ -974,7 +1067,13 @@ function checkout(){
   document.getElementById('checkoutSummaryItems').innerHTML = itemsHtml;
   document.getElementById('checkoutSummaryTotal').textContent = fmt(sum);
 
-  // Drawer schliessen, Modal öffnen
+  // Zahlungsart zurücksetzen
+  selectedPayment = null;
+  document.getElementById('pay_bar').checked = false;
+  document.getElementById('pay_pp').checked  = false;
+  document.getElementById('pay_label_bar').classList.remove('selected');
+  document.getElementById('pay_label_pp').classList.remove('selected');
+
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('checkoutModalOverlay').style.display = 'flex';
@@ -986,7 +1085,29 @@ function closeCheckoutModal(){
   document.body.style.overflow = '';
 }
 
-function submitCheckout(){
+/* ── PAYPAL MODAL ── */
+function showPayPalModal(sum){
+  var amountStr = fmt(sum);
+  var amountRaw = sum.toFixed(2);
+  document.getElementById('ppAmount').textContent = amountStr;
+  document.getElementById('ppLinkAmount').textContent = amountStr;
+  var ppUrl = 'https://paypal.me/' + PAYPAL_ME + '/' + amountRaw + 'EUR';
+  document.getElementById('ppLink').href = ppUrl;
+  document.getElementById('paypalModalWrap').style.display = 'flex';
+}
+
+function closePayPalModal(){
+  document.getElementById('paypalModalWrap').style.display = 'none';
+  document.getElementById('checkoutModalOverlay').style.display = 'flex';
+}
+
+function confirmPayPalAndSubmit(){
+  document.getElementById('paypalModalWrap').style.display = 'none';
+  doFinalSubmit('PayPal');
+}
+
+/* ── SUBMIT ── */
+function submitCheckout(skipPayPal){
   var vorname  = document.getElementById('co_vorname').value.trim();
   var nachname = document.getElementById('co_nachname').value.trim();
   var email    = document.getElementById('co_email').value.trim();
@@ -994,28 +1115,54 @@ function submitCheckout(){
   var plz      = document.getElementById('co_plz').value.trim();
   var ort      = document.getElementById('co_ort').value.trim();
 
-  // Felder visuell zurücksetzen
   ['co_vorname','co_nachname','co_email','co_strasse','co_plz','co_ort'].forEach(function(id){
     document.getElementById(id).classList.remove('error');
   });
 
-  // Validierung
   var errors = [];
-  if(!vorname)  { errors.push('co_vorname');  }
-  if(!nachname) { errors.push('co_nachname'); }
-  if(!email || !email.includes('@')) { errors.push('co_email'); }
-  if(!strasse)  { errors.push('co_strasse');  }
-  if(!plz)      { errors.push('co_plz');      }
-  if(!ort)      { errors.push('co_ort');       }
+  if(!vorname)  errors.push('co_vorname');
+  if(!nachname) errors.push('co_nachname');
+  if(!email || !email.includes('@')) errors.push('co_email');
+  if(!strasse)  errors.push('co_strasse');
+  if(!plz)      errors.push('co_plz');
+  if(!ort)      errors.push('co_ort');
 
-  if(errors.length > 0){
-    errors.forEach(function(id){ document.getElementById(id).classList.add('error'); });
-    showToast('Bitte alle Pflichtfelder ausfüllen');
+  if(!selectedPayment){
+    errors.push('zahlungsart');
+    showToast('Bitte eine Zahlungsart wählen');
+  }
+
+  if(errors.filter(function(e){return e!=='zahlungsart';}).length > 0){
+    errors.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.classList.add('error');
+    });
+    if(errors.filter(function(e){return e!=='zahlungsart';}).length > 0){
+      showToast('Bitte alle Pflichtfelder ausfüllen');
+    }
     return;
   }
 
-  var tel   = document.getElementById('co_tel').value.trim();
-  var note  = document.getElementById('co_note').value.trim();
+  if(selectedPayment === 'paypal'){
+    var sum = 0;
+    for(var i=0;i<cart.length;i++) sum += cart[i].qty * cart[i].p;
+    closeCheckoutModal();
+    showPayPalModal(sum);
+    return;
+  }
+
+  doFinalSubmit('Barzahlung');
+}
+
+function doFinalSubmit(zahlungsart){
+  var vorname  = document.getElementById('co_vorname').value.trim();
+  var nachname = document.getElementById('co_nachname').value.trim();
+  var email    = document.getElementById('co_email').value.trim();
+  var tel      = document.getElementById('co_tel').value.trim();
+  var strasse  = document.getElementById('co_strasse').value.trim();
+  var plz      = document.getElementById('co_plz').value.trim();
+  var ort      = document.getElementById('co_ort').value.trim();
+  var note     = document.getElementById('co_note').value.trim();
 
   var sum = 0;
   var bestellungText = '';
@@ -1031,17 +1178,17 @@ function submitCheckout(){
     bestellungText += ' — ' + fmt(x.p) + '\n';
   }
 
-  // EmailJS
   emailjs.send("service_6bd714f", "template_51qq61l", {
-    from_name:  vorname + ' ' + nachname,
-    name:       vorname + ' ' + nachname,
-    email:      email,
-    bestellung: bestellungText,
-    gesamt:     fmt(sum),
-    uhrzeit:    new Date().toLocaleString('de-DE'),
-    telefon:    tel || '—',
-    adresse:    strasse + ', ' + plz + ' ' + ort,
-    anmerkung:  note || '—'
+    from_name:   vorname + ' ' + nachname,
+    name:        vorname + ' ' + nachname,
+    email:       email,
+    bestellung:  bestellungText,
+    gesamt:      fmt(sum),
+    uhrzeit:     new Date().toLocaleString('de-DE'),
+    telefon:     tel || '—',
+    adresse:     strasse + ', ' + plz + ' ' + ort,
+    anmerkung:   note || '—',
+    zahlungsart: zahlungsart
   }).then(function(){
     console.log('Bestellmail gesendet');
   }, function(err){
@@ -1049,11 +1196,11 @@ function submitCheckout(){
   });
 
   closeCheckoutModal();
-  alert('Bestellung aufgegeben!\n\nGesamt: ' + fmt(sum) + '\nWir melden uns bei: ' + email + '\n\nVielen Dank!');
+  alert('Bestellung aufgegeben!\n\nGesamt: ' + fmt(sum) + '\nZahlungsart: ' + zahlungsart + '\nWir melden uns bei: ' + email + '\n\nVielen Dank!');
   cart = [];
   updateCart();
+  selectedPayment = null;
 
-  // Formular leeren
   ['co_vorname','co_nachname','co_email','co_tel','co_strasse','co_plz','co_ort','co_note'].forEach(function(id){
     var el = document.getElementById(id);
     if(el) el.value = '';
