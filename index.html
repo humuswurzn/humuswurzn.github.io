@@ -883,11 +883,12 @@ function getCatLabel(c){
 /* ── CART ── */
 function addToCartFromGrid(id){
   var p=null; for(var i=0;i<P.length;i++) if(P[i].id===id){p=P[i];break;}
+  if(p.sizes&&p.sizes.length&&!selectedSizes[id]){showToast('Bitte zuerst eine Größe wählen — Produkt öffnen');return;}
   addToCart(p,selectedColors[id]||(p.colors?p.colors[0]:null));
 }
 function addToCartFromDetail(id){
   var p=null; for(var i=0;i<P.length;i++) if(P[i].id===id){p=P[i];break;}
-  if(p.sizes&&p.sizes.length&&!selectedSizes[id]){showToast('Bitte zuerst eine Groesse waehlen');return;}
+  if(p.sizes&&p.sizes.length&&!selectedSizes[id]){showToast('Bitte zuerst eine Größe wählen');return;}
   var persData=null;
   if(p.personalize&&_isPersonalized){
     var nameVal=(document.getElementById('persName')||{}).value||'';
@@ -1024,6 +1025,7 @@ function submitCheckout(){
     bestellungText += x.qty + 'x ' + x.n;
     if(x.color) bestellungText += ' (' + COLORS[x.color].label + ')';
     if(x.size)  bestellungText += ' | Größe: ' + x.size;
+    if(x.printColor) bestellungText += ' | Logofarbe: ' + (x.printColor.includes('schwarz') ? 'Schwarz' : 'Weiss');
     if(x.pers && x.pers.name)   bestellungText += ' | Name: ' + x.pers.name;
     if(x.pers && x.pers.number) bestellungText += ' | Nr. ' + x.pers.number;
     bestellungText += ' — ' + fmt(x.p) + '\n';
