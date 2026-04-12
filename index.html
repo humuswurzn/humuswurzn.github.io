@@ -301,6 +301,142 @@ header{
 .paypal-back-btn{width:100%;background:transparent;color:#aaa;border:none;padding:10px;font-size:0.85rem;cursor:pointer;font-family:"DM Sans",sans-serif}
 .paypal-back-btn:hover{color:var(--green-dark)}
 
+/* SUCCESS MODAL */
+.success-modal-wrap{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:900;
+  display:none;align-items:flex-end;justify-content:center;
+}
+.success-modal-wrap.open{display:flex}
+.success-modal{
+  background:#fff;border-radius:22px 22px 0 0;
+  padding:0 0 40px;width:100%;max-width:520px;
+  overflow:hidden;
+  animation: slideUp .38s cubic-bezier(.4,0,.2,1);
+}
+@keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
+.success-modal-top{
+  background:var(--green-dark);
+  padding:32px 24px 28px;
+  text-align:center;
+  position:relative;
+}
+.success-modal-top::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--green-mid) 0%,var(--leaf) 40%,var(--green-mid) 100%);
+}
+.success-checkmark{
+  width:68px;height:68px;
+  background:var(--leaf);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;
+  animation: popIn .45s cubic-bezier(.34,1.56,.64,1) .15s both;
+}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.success-modal-title{
+  font-family:"Playfair Display",serif;
+  font-size:1.55rem;font-weight:900;
+  color:#fff;
+  margin-bottom:6px;
+}
+.success-modal-subtitle{
+  font-size:0.82rem;
+  color:rgba(255,255,255,.55);
+  letter-spacing:.3px;
+}
+.success-modal-body{padding:24px 22px 0}
+.success-order-box{
+  background:var(--cream);
+  border-radius:14px;
+  overflow:hidden;
+  margin-bottom:20px;
+  border:1.5px solid var(--cream2);
+}
+.success-order-header{
+  background:var(--cream2);
+  padding:10px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.success-order-label{
+  font-size:0.65rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--green-mid);
+}
+.success-order-items{padding:4px 0}
+.success-order-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 16px;
+  border-bottom:1px solid var(--cream2);
+  gap:10px;
+}
+.success-order-item:last-child{border-bottom:none}
+.success-item-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.success-item-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--leaf);flex-shrink:0;
+}
+.success-item-name{
+  font-size:0.84rem;font-weight:600;
+  color:var(--green-dark);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.success-item-meta{font-size:0.7rem;color:#aaa;margin-top:1px}
+.success-item-price{font-size:0.84rem;font-weight:700;color:var(--green-dark);flex-shrink:0}
+.success-order-total{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;
+  background:var(--green-dark);
+  border-radius:0 0 12px 12px;
+}
+.success-total-label{font-size:0.78rem;font-weight:600;color:rgba(255,255,255,.65);letter-spacing:.5px}
+.success-total-amount{font-size:1.1rem;font-weight:700;color:var(--leaf)}
+.success-info-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  margin-bottom:22px;
+}
+.success-info-card{
+  background:var(--cream);
+  border:1.5px solid var(--cream2);
+  border-radius:12px;
+  padding:12px 14px;
+}
+.success-info-card-label{
+  font-size:0.6rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--green-mid);
+  margin-bottom:5px;
+}
+.success-info-card-value{
+  font-size:0.82rem;font-weight:600;color:var(--green-dark);
+  line-height:1.4;
+}
+.success-email-note{
+  display:flex;align-items:center;gap:10px;
+  background:#f0f6e8;
+  border:1.5px solid #c8dea0;
+  border-radius:12px;
+  padding:12px 14px;
+  margin-bottom:22px;
+}
+.success-email-note svg{flex-shrink:0}
+.success-email-note-text{font-size:0.8rem;color:var(--green-dark);line-height:1.45}
+.success-email-note-text strong{color:var(--green)}
+.success-actions{display:flex;flex-direction:column;gap:10px}
+.success-btn-primary{
+  width:100%;background:var(--green);color:#fff;border:none;
+  border-radius:14px;padding:15px;font-size:0.95rem;font-weight:600;
+  cursor:pointer;font-family:"DM Sans",sans-serif;
+  transition:background .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.success-btn-primary:hover{background:var(--green-mid)}
+.success-btn-secondary{
+  width:100%;background:transparent;color:#aaa;border:none;
+  padding:10px;font-size:0.85rem;cursor:pointer;
+  font-family:"DM Sans",sans-serif;transition:color .15s;
+}
+.success-btn-secondary:hover{color:var(--green-dark)}
+
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--green-dark);color:#fff;padding:11px 22px;border-radius:40px;font-size:0.84rem;z-index:800;transition:transform .3s,opacity .3s;opacity:0;white-space:nowrap;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
@@ -493,11 +629,9 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
   <div class="paypal-modal">
     <div class="paypal-modal-title">PayPal Zahlung</div>
     <p class="paypal-modal-sub">Scanne den QR-Code mit deiner PayPal-App<br>oder tippe auf den Button unten</p>
-    <!-- Ersetze "paypal-qr.png" mit deinem eigenen PayPal QR-Code Bild -->
     <img src="paypal-qr.png" alt="PayPal QR Code" class="paypal-qr-img" onerror="this.style.display='none'">
     <div class="paypal-amount" id="ppAmount"></div>
     <div class="paypal-amount-hint">Bitte genau diesen Betrag angeben</div>
-    <!-- WICHTIG: Ersetze "DEINPAYPALNAME" mit deinem echten PayPal.me Namen -->
     <a id="ppLink" href="#" target="_blank" class="paypal-link-btn">
       Direkt mit PayPal bezahlen — <span id="ppLinkAmount"></span>
     </a>
@@ -505,6 +639,47 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
       Zahlung bestätigt &amp; Bestellung absenden
     </button>
     <button class="paypal-back-btn" onclick="closePayPalModal()">&#8592; Zurück</button>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div id="successModalWrap" class="success-modal-wrap" onclick="if(event.target===this)closeSuccessModal(false)">
+  <div class="success-modal">
+    <div class="success-modal-top">
+      <div class="success-checkmark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="3" style="width:32px;height:32px"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="success-modal-title">Bestellung aufgegeben!</div>
+      <div class="success-modal-subtitle" id="successModalSubtitle"></div>
+    </div>
+    <div class="success-modal-body">
+      <div class="success-order-box">
+        <div class="success-order-header">
+          <span class="success-order-label">Bestellübersicht</span>
+          <span id="successOrderDate" style="font-size:0.7rem;color:var(--green-mid);font-weight:600"></span>
+        </div>
+        <div class="success-order-items" id="successOrderItems"></div>
+        <div class="success-order-total">
+          <span class="success-total-label">GESAMT</span>
+          <span class="success-total-amount" id="successTotalAmount"></span>
+        </div>
+      </div>
+
+      <div class="success-info-grid" id="successInfoGrid"></div>
+
+      <div class="success-email-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" style="width:20px;height:20px;flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div class="success-email-note-text" id="successEmailNote"></div>
+      </div>
+
+      <div class="success-actions">
+        <button class="success-btn-primary" onclick="closeSuccessModal(false)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          Weiter shoppen
+        </button>
+        <button class="success-btn-secondary" onclick="closeSuccessModal(true)">Schließen</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -517,7 +692,52 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
 
 <script>
 /* ── PAYPAL CONFIG ── */
-var PAYPAL_ME = 'HumusWurzn.me'; // <-- hier deinen PayPal.me Namen eintragen
+var PAYPAL_ME = 'HumusWurzn.me';
+
+/* ──────────────────────────────────────────────────
+   EMAILJS CONFIG
+   ─ service_id:       deine Service-ID (unveraendert)
+   ─ template_shop:    dein bestehendes Shop-Template
+   ─ template_kunde:   NEUES Template (Anleitung unten)
+   ────────────────────────────────────────────────── */
+var EJS_SERVICE    = 'service_6bd714f';
+var EJS_TPL_SHOP   = 'template_51qq61l';
+var EJS_TPL_KUNDE  = 'template_XXXXX'; // <-- hier neue Template-ID eintragen!
+
+/*
+  EMAILJS KUNDEN-TEMPLATE ERSTELLEN:
+  1. emailjs.com → Email Templates → Create New Template
+  2. To Email:  {{customer_email}}
+  3. Subject:   Deine Bestellung bei Humus Wurzn 🌱
+  4. Body (HTML empfohlen):
+
+  Hallo {{customer_name}},
+
+  vielen Dank für deine Bestellung! Wir haben sie erhalten und melden uns bald bei dir.
+
+  ────────────────────
+  DEINE BESTELLUNG
+  ────────────────────
+  {{bestellung_html}}
+
+  Gesamt: {{gesamt}}
+  Zahlungsart: {{zahlungsart}}
+
+  ────────────────────
+  LIEFERADRESSE
+  ────────────────────
+  {{adresse}}
+
+  {{anmerkung_block}}
+
+  ────────────────────
+  Bis bald,
+  Dein Humus Wurzn Team 🌱
+
+  5. Variablen die gesendet werden:
+     customer_name, customer_email, bestellung_html,
+     gesamt, zahlungsart, adresse, anmerkung_block
+*/
 
 /* ── SVG ICONS ── */
 var ICONS = {
@@ -1069,7 +1289,6 @@ function checkout(){
   document.getElementById('checkoutSummaryItems').innerHTML = itemsHtml;
   document.getElementById('checkoutSummaryTotal').textContent = fmt(sum);
 
-  // Zahlungsart zurücksetzen
   selectedPayment = null;
   document.getElementById('pay_bar').checked = false;
   document.getElementById('pay_pp').checked  = false;
@@ -1153,9 +1372,10 @@ function submitCheckout(skipPayPal){
     return;
   }
 
-  doFinalSubmit('Barzahlung');
+  doFinalSubmit('Barzahlung bei Abholung');
 }
 
+/* ── FINAL SUBMIT + SUCCESS MODAL ── */
 function doFinalSubmit(zahlungsart){
   var vorname  = document.getElementById('co_vorname').value.trim();
   var nachname = document.getElementById('co_nachname').value.trim();
@@ -1165,48 +1385,127 @@ function doFinalSubmit(zahlungsart){
   var plz      = document.getElementById('co_plz').value.trim();
   var ort      = document.getElementById('co_ort').value.trim();
   var note     = document.getElementById('co_note').value.trim();
+  var fullName = vorname + ' ' + nachname;
+  var adresse  = strasse + ', ' + plz + ' ' + ort;
 
   var sum = 0;
-  var bestellungText = '';
+  var bestellungShop  = '';  // plain text für Shop-Mail
+  var bestellungKunde = '';  // plain text für Kunden-Mail (ebenfalls plain text, schöner formatiert)
+
   for(var i = 0; i < cart.length; i++){
     var x = cart[i];
     sum += x.qty * x.p;
-    bestellungText += x.qty + 'x ' + x.n;
-    if(x.color) bestellungText += ' (' + COLORS[x.color].label + ')';
-    if(x.size)  bestellungText += ' | Größe: ' + x.size;
-    if(x.printColor) bestellungText += ' | Logofarbe: ' + (x.printColor.includes('schwarz') ? 'Schwarz' : 'Weiss');
-    if(x.pers && x.pers.name)   bestellungText += ' | Name: ' + x.pers.name;
-    if(x.pers && x.pers.number) bestellungText += ' | Nr. ' + x.pers.number;
-    bestellungText += ' — ' + fmt(x.p) + '\n';
+
+    var zeile = x.qty + 'x ' + x.n;
+    if(x.color)      zeile += ' (' + COLORS[x.color].label + ')';
+    if(x.size)       zeile += ' | Größe: ' + x.size;
+    if(x.printColor) zeile += ' | Logofarbe: ' + (x.printColor.includes('schwarz') ? 'Schwarz' : 'Weiss');
+    if(x.pers && x.pers.name)   zeile += ' | Name: ' + x.pers.name;
+    if(x.pers && x.pers.number) zeile += ' | Nr. ' + x.pers.number;
+
+    bestellungShop  += zeile + ' — ' + fmt(x.p) + '\n';
+    bestellungKunde += '• ' + zeile + ' — ' + fmt(x.qty * x.p) + '\n';
   }
 
-  emailjs.send("service_6bd714f", "template_51qq61l", {
-    from_name:   vorname + ' ' + nachname,
-    name:        vorname + ' ' + nachname,
+  var now = new Date();
+  var uhrzeit = now.toLocaleString('de-DE');
+
+  /* ── Mail an Shop ── */
+  emailjs.send(EJS_SERVICE, EJS_TPL_SHOP, {
+    from_name:   fullName,
+    name:        fullName,
     email:       email,
-    bestellung:  bestellungText,
+    bestellung:  bestellungShop,
     gesamt:      fmt(sum),
-    uhrzeit:     new Date().toLocaleString('de-DE'),
+    uhrzeit:     uhrzeit,
     telefon:     tel || '—',
-    adresse:     strasse + ', ' + plz + ' ' + ort,
+    adresse:     adresse,
     anmerkung:   note || '—',
     zahlungsart: zahlungsart
-  }).then(function(){
-    console.log('Bestellmail gesendet');
-  }, function(err){
-    console.error('EmailJS Fehler:', err);
   });
 
+  /* ── Bestätigungsmail an Kunden ── */
+  emailjs.send(EJS_SERVICE, EJS_TPL_KUNDE, {
+    customer_name:   fullName,
+    customer_email:  email,
+    bestellung_html: bestellungKunde,
+    gesamt:          fmt(sum),
+    zahlungsart:     zahlungsart,
+    adresse:         adresse,
+    anmerkung_block: note ? 'Anmerkung: ' + note : ''
+  });
+
+  /* ── Success Modal befüllen ── */
+  // Datum
+  document.getElementById('successOrderDate').textContent =
+    now.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'});
+
+  // Artikel-Liste
+  var itemsHtml = '';
+  var cartSnapshot = cart.slice();
+  for(var i = 0; i < cartSnapshot.length; i++){
+    var x = cartSnapshot[i];
+    var metaParts = [];
+    if(x.color) metaParts.push(COLORS[x.color].label);
+    if(x.size)  metaParts.push(x.size);
+    if(x.pers && (x.pers.name || x.pers.number)){
+      var pd=[];
+      if(x.pers.name) pd.push(x.pers.name);
+      if(x.pers.number) pd.push('#'+x.pers.number);
+      metaParts.push(pd.join(' '));
+    }
+    itemsHtml += '<div class="success-order-item">'
+      + '<div class="success-item-left">'
+      + '<div class="success-item-dot"></div>'
+      + '<div>'
+      + '<div class="success-item-name">' + x.qty + 'x ' + x.n + '</div>'
+      + (metaParts.length ? '<div class="success-item-meta">' + metaParts.join(' · ') + '</div>' : '')
+      + '</div></div>'
+      + '<div class="success-item-price">' + fmt(x.qty * x.p) + '</div>'
+      + '</div>';
+  }
+  document.getElementById('successOrderItems').innerHTML = itemsHtml;
+  document.getElementById('successTotalAmount').textContent = fmt(sum);
+
+  // Info-Kacheln
+  var zahlIcon = zahlungsart === 'PayPal' ? '🅿' : '💵';
+  document.getElementById('successInfoGrid').innerHTML =
+    '<div class="success-info-card">'
+    + '<div class="success-info-card-label">Zahlungsart</div>'
+    + '<div class="success-info-card-value">' + zahlIcon + ' ' + zahlungsart + '</div>'
+    + '</div>'
+    + '<div class="success-info-card">'
+    + '<div class="success-info-card-label">Lieferadresse</div>'
+    + '<div class="success-info-card-value">' + strasse + '<br>' + plz + ' ' + ort + '</div>'
+    + '</div>';
+
+  // E-Mail Hinweis
+  document.getElementById('successEmailNote').innerHTML =
+    'Eine Bestellbestätigung wurde an <strong>' + email + '</strong> gesendet.';
+
+  // Subtitle
+  document.getElementById('successModalSubtitle').textContent =
+    'Vielen Dank, ' + vorname + '! Wir melden uns bald.';
+
+  /* ── Alles schließen, Modal öffnen ── */
   closeCheckoutModal();
-  alert('Bestellung aufgegeben!\n\nGesamt: ' + fmt(sum) + '\nZahlungsart: ' + zahlungsart + '\nWir melden uns bei: ' + email + '\n\nVielen Dank!');
+  document.getElementById('successModalWrap').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  /* ── Cart leeren ── */
   cart = [];
   updateCart();
   selectedPayment = null;
-
   ['co_vorname','co_nachname','co_email','co_tel','co_strasse','co_plz','co_ort','co_note'].forEach(function(id){
     var el = document.getElementById(id);
     if(el) el.value = '';
   });
+}
+
+function closeSuccessModal(scrollTop){
+  document.getElementById('successModalWrap').classList.remove('open');
+  document.body.style.overflow = '';
+  if(scrollTop) window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function doFilter(f,btn){
