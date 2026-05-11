@@ -17,7 +17,7 @@
   --shadow:0 4px 24px rgba(65,79,30,0.13);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%;overflow:hidden}
 body{
   font-family:"DM Sans",sans-serif;
   background:var(--green-dark);
@@ -133,16 +133,18 @@ header{
   flex:1;
   display:flex;
   flex-direction:column;
-  position:relative;
+  overflow:hidden;
 }
 
 /* POSTER AREA */
 .poster-wrap{
+  flex:1;
   position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:20px 16px;
+  padding:12px;
+  overflow:hidden;
 }
 
 /* Subtle background texture */
@@ -158,8 +160,11 @@ header{
 /* The poster image itself */
 .poster-img{
   display:block;
-  width:100%;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
   height:auto;
+  object-fit:contain;
   position:relative;
   z-index:2;
   border-radius:8px;
@@ -175,9 +180,10 @@ header{
 /* Shop CTA button */
 .cta-wrap{
   position:relative;z-index:2;
-  padding:28px 24px 0;
+  padding:10px 24px 10px;
   display:flex;
   justify-content:center;
+  flex-shrink:0;
 }
 .cta-btn{
   display:inline-flex;
@@ -204,13 +210,12 @@ header{
 /* FOOTER */
 footer{
   text-align:center;
-  padding:24px 16px;
+  padding:12px 16px;
   background:var(--green-dark);
   color:rgba(255,255,255,.35);
   font-size:0.75rem;
   border-top:1px solid rgba(255,255,255,.06);
   flex-shrink:0;
-  margin-top:32px;
 }
 .footer-links{
   display:flex;justify-content:center;gap:16px;
