@@ -144,8 +144,9 @@ header{
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:calc(100vh - 120px);
+  min-height:calc(100vh - 150px);
   overflow:hidden;
+  padding:16px;
 }
 
 /* Subtle background texture */
@@ -160,12 +161,14 @@ header{
 
 /* The poster image itself */
 .poster-img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  position:absolute;
-  inset:0;
   display:block;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  position:relative;
+  z-index:2;
+  object-fit:contain;
 }
 
 /* Placeholder shown when no image is set */
@@ -432,12 +435,12 @@ footer{
     <h3>Angaben gemäß §5 TMG</h3>
     <p>
       <strong>Humus Wurzn Fanshop</strong><br>
-      [Dein Name]<br>
-      [Straße und Hausnummer]<br>
-      [PLZ Ort]
+      Florian Knies<br>
+      Hochleiten 3<br>
+      823627 Warngau
     </p>
     <h3>Kontakt</h3>
-    <p>E-Mail: [deine@email.de]</p>
+    <p>E-Mail: floknies13@gmail.com</p>
     <h3>Haftungsausschluss</h3>
     <p>Diese Website ist ein nicht-kommerzielles Portfolio-Projekt. Es werden keine echten Bestellungen abgewickelt, keine Waren versandt und keine Zahlungen verarbeitet.</p>
     <h3>Urheberrecht</h3>
