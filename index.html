@@ -125,38 +125,14 @@ header{
 }
 .hero-bg-leaves{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden;opacity:0.06}
 .hero-bg-leaves svg{position:absolute}
-.hero-anim {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.hero-anim-frame {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-}
-.hero-anim-frame img {
-  width: 800px;
-  height: auto;
-  position: absolute;
-  right: 8%;
-  bottom: 0;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
-}
-.hero-anim-frame:nth-child(1) { animation: heroFrame 5.0s steps(1) infinite -1.0s; }
-.hero-anim-frame:nth-child(2) { animation: heroFrame 5.0s steps(1) infinite -5.0s; }
-.hero-anim-frame:nth-child(3) { animation: heroFrame 5.0s steps(1) infinite -4.0s; }
-.hero-anim-frame:nth-child(4) { animation: heroFrame 5.0s steps(1) infinite -3.0s; }
-.hero-anim-frame:nth-child(5) { animation: heroFrame 5.0s steps(1) infinite -2.0s; }
-@keyframes heroFrame {
-  0%   { opacity: 1; }
-  20%  { opacity: 0; }
-  100% { opacity: 0; }
+.hero-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  pointer-events:none;
 }
 .hero-content { position: relative; z-index: 2; }
 .hero-tag{display:inline-block;background:var(--leaf);color:var(--green-dark);font-size:0.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:5px 14px;border-radius:4px;margin-bottom:16px}
@@ -516,13 +492,8 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
     <svg style="top:-20px;left:-40px;width:200px;height:200px;transform:rotate(-30deg)" viewBox="0 0 100 100" fill="white"><path d="M50 5 C20 5 5 30 5 50 C5 70 20 95 50 95 C80 95 95 70 95 50 C95 30 80 5 50 5 Z M50 15 C30 15 15 30 15 50 C15 70 30 85 50 85"/></svg>
     <svg style="bottom:-30px;right:-20px;width:180px;height:180px;transform:rotate(45deg)" viewBox="0 0 100 100" fill="white"><ellipse cx="50" cy="50" rx="40" ry="25" transform="rotate(-45 50 50)"/></svg>
   </div>
-  <div class="hero-anim">
-    <div class="hero-anim-frame"><img src="Anim1.png" alt=""></div>
-    <div class="hero-anim-frame"><img src="Anim2.png" alt=""></div>
-    <div class="hero-anim-frame"><img src="Anim3.png" alt=""></div>
-    <div class="hero-anim-frame"><img src="Anim4.png" alt=""></div>
-    <div class="hero-anim-frame"><img src="Anim5.png" alt=""></div>
-  </div>
+  <!-- Hero-Bild: ersetze "HeroBild.jpg" mit deinem Dateinamen -->
+  <img class="hero-img" src="HeroBild.jpg" alt="Humus Wurzn">
   <div class="hero-content">
     <div class="hero-tag">Offizieller Fanshop</div>
     <h1>Humus<br><span>Wurzn</span></h1>
