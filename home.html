@@ -165,101 +165,6 @@ header{
   border-radius:8px;
 }
 
-/* Placeholder shown when no image is set */
-.poster-placeholder{
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:40px 24px;
-  width:100%;
-  height:100%;
-  min-height:calc(100vh - 120px);
-}
-
-.placeholder-frame{
-  border:2px dashed rgba(168,196,90,.35);
-  border-radius:20px;
-  padding:52px 36px;
-  max-width:480px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:20px;
-  background:rgba(44,54,20,.4);
-  backdrop-filter:blur(2px);
-  position:relative;
-}
-
-.placeholder-icon{
-  width:72px;height:72px;
-  background:rgba(168,196,90,.12);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  border:1.5px solid rgba(168,196,90,.3);
-}
-
-.placeholder-title{
-  font-family:"Playfair Display",serif;
-  font-size:1.6rem;
-  font-weight:900;
-  color:#fff;
-  line-height:1.15;
-}
-.placeholder-title span{color:var(--leaf)}
-
-.placeholder-sub{
-  font-size:0.85rem;
-  color:rgba(255,255,255,.45);
-  line-height:1.6;
-  max-width:300px;
-}
-
-.placeholder-hint{
-  display:flex;align-items:center;gap:8px;
-  background:rgba(168,196,90,.1);
-  border:1px solid rgba(168,196,90,.2);
-  border-radius:8px;
-  padding:10px 14px;
-  font-size:0.72rem;
-  color:rgba(168,196,90,.8);
-  font-weight:600;
-  letter-spacing:.5px;
-  width:100%;
-  justify-content:center;
-}
-
-.placeholder-dots{
-  display:flex;gap:6px;margin-top:4px;
-}
-.placeholder-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:rgba(168,196,90,.3);
-  animation:dotPulse 1.8s ease-in-out infinite;
-}
-.placeholder-dot:nth-child(2){animation-delay:.3s}
-.placeholder-dot:nth-child(3){animation-delay:.6s}
-@keyframes dotPulse{
-  0%,100%{background:rgba(168,196,90,.3);transform:scale(1)}
-  50%{background:rgba(168,196,90,.7);transform:scale(1.3)}
-}
-
-/* Corner decorations */
-.corner{
-  position:absolute;
-  width:18px;height:18px;
-  border-color:rgba(168,196,90,.4);
-  border-style:solid;
-}
-.corner-tl{top:-1px;left:-1px;border-width:2px 0 0 2px;border-radius:4px 0 0 0}
-.corner-tr{top:-1px;right:-1px;border-width:2px 2px 0 0;border-radius:0 4px 0 0}
-.corner-bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px;border-radius:0 0 0 4px}
-.corner-br{bottom:-1px;right:-1px;border-width:0 2px 2px 0;border-radius:0 0 4px 0}
-
 /* Floating leaf decorations */
 .leaf-deco{
   position:absolute;
@@ -305,6 +210,7 @@ footer{
   font-size:0.75rem;
   border-top:1px solid rgba(255,255,255,.06);
   flex-shrink:0;
+  margin-top:32px;
 }
 .footer-links{
   display:flex;justify-content:center;gap:16px;
@@ -405,44 +311,7 @@ footer{
       <path d="M50 10 C30 10 10 30 10 60 C10 80 30 90 50 90 C70 90 90 80 90 60 C90 30 70 10 50 10Z"/>
     </svg>
 
-    <!-- Placeholder — ersetze diesen Block durch <img class="poster-img" src="dein-plakat.jpg" alt="Plakat"> -->
-    <div class="poster-placeholder">
-      <div class="placeholder-frame">
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div>
-        <div class="corner corner-br"></div>
-
-        <div class="placeholder-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--leaf)" stroke-width="1.5" style="width:32px;height:32px">
-            <rect x="3" y="3" width="18" height="18" rx="3"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-
-        <div class="placeholder-title">
-          Humus<br><span>Wurzn</span>
-        </div>
-
-        <div class="placeholder-sub">
-          Hier kommt dein Plakat oder Bild hin.<br>
-          Einfach den Platzhalter-Block durch ein <code style="font-size:0.78rem;background:rgba(255,255,255,.1);padding:2px 6px;border-radius:4px">&lt;img&gt;</code> ersetzen.
-        </div>
-
-        <div class="placeholder-hint">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;flex-shrink:0"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Plakat-Datei hier einfügen
-        </div>
-
-        <div class="placeholder-dots">
-          <div class="placeholder-dot"></div>
-          <div class="placeholder-dot"></div>
-          <div class="placeholder-dot"></div>
-        </div>
-      </div>
-    </div>
-    <!-- Ende Placeholder -->
+    <img class="poster-img" src="Wurznlauf.png" alt="Plakat">
 
   </div>
 
@@ -466,12 +335,12 @@ footer{
     <h3>Angaben gemäß §5 TMG</h3>
     <p>
       <strong>Humus Wurzn Fanshop</strong><br>
-      [Dein Name]<br>
-      [Straße und Hausnummer]<br>
-      [PLZ Ort]
+      Florian Knies<br>
+      Hochleiten 3<br>
+      823627 Warngau
     </p>
     <h3>Kontakt</h3>
-    <p>E-Mail: [deine@email.de]</p>
+    <p>E-Mail: floknies13@gmail.com</p>
     <h3>Haftungsausschluss</h3>
     <p>Diese Website ist ein nicht-kommerzielles Portfolio-Projekt. Es werden keine echten Bestellungen abgewickelt, keine Waren versandt und keine Zahlungen verarbeitet.</p>
     <h3>Urheberrecht</h3>
@@ -488,7 +357,7 @@ footer{
       <p>⚡ <strong>Demo-Projekt:</strong> Es werden keine Daten dauerhaft gespeichert oder an Dritte verkauft.</p>
     </div>
     <h3>Verantwortlicher</h3>
-    <p>[Dein Name], [Adresse], [E-Mail]</p>
+    <p>Florian Knies, Hochleiten 3, 83627 Warngau, floknies13@gmail.com</p>
     <h3>Welche Daten werden verarbeitet?</h3>
     <p>Wenn du das Bestellformular ausfüllst, werden folgende Daten temporär verarbeitet: Name, E-Mail-Adresse, Lieferadresse und Bestelldetails.</p>
     <h3>E-Mail-Versand via EmailJS</h3>
