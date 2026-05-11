@@ -132,10 +132,9 @@ header{
   inset:0;
   width:100%;
   height:100%;
-  object-fit:contain;        /* ← war: cover */
-  object-position:center;
+  object-fit:cover;
+  object-position:bottom; 
   pointer-events:none;
-  background:var(--green-dark);  /* ← Auffüllung an den Seiten */
 }
 .hero-content { position: relative; z-index: 2; }
 .hero-tag{display:inline-block;background:var(--leaf);color:var(--green-dark);font-size:0.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:5px 14px;border-radius:4px;margin-bottom:16px}
@@ -163,9 +162,10 @@ header{
 .product-visual{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:opacity .3s,transform .4s}
 .product-visual svg{width:52%;height:52%;transition:transform .3s}
 .card:hover .product-visual{opacity:0;transform:scale(1.08)}
-.product-img-wrap{width:100%;height:100%;position:relative;overflow:hidden}
-.product-img-main{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .35s,transform .4s}
-.product-img-hover{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s}
+.product-img-wrap{width:100%;height:100%;position:relative;overflow:hidden;background-size:cover;background-position:center}
+/* ── GEÄNDERT: object-fit:contain damit PNG nicht abgeschnitten wird ── */
+.product-img-main{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .35s,transform .4s}
+.product-img-hover{width:100%;height:100%;object-fit:contain;display:block;position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s}
 .card:hover .product-img-main{opacity:0;transform:scale(1.08)}
 .card:hover .product-img-hover{opacity:1;transform:scale(1)}
 .product-img-wrap::after{content:'Details';position:absolute;bottom:10px;left:50%;transform:translateX(-50%) translateY(6px);background:rgba(65,79,30,.82);color:var(--leaf);font-size:0.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;font-family:"DM Sans",sans-serif;white-space:nowrap}
@@ -495,7 +495,6 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
     <svg style="top:-20px;left:-40px;width:200px;height:200px;transform:rotate(-30deg)" viewBox="0 0 100 100" fill="white"><path d="M50 5 C20 5 5 30 5 50 C5 70 20 95 50 95 C80 95 95 70 95 50 C95 30 80 5 50 5 Z M50 15 C30 15 15 30 15 50 C15 70 30 85 50 85"/></svg>
     <svg style="bottom:-30px;right:-20px;width:180px;height:180px;transform:rotate(45deg)" viewBox="0 0 100 100" fill="white"><ellipse cx="50" cy="50" rx="40" ry="25" transform="rotate(-45 50 50)"/></svg>
   </div>
-  <!-- Hero-Bild: ersetze "HeroBild.jpg" mit deinem Dateinamen -->
   <img class="hero-img" src="HeroHintergrund.png" alt="Humus Wurzn">
   <div class="hero-content">
     <div class="hero-tag">Offizieller Fanshop</div>
@@ -546,7 +545,7 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
   </div>
 </div>
 
-<!-- CHECKOUT MODAL — nur Barzahlung -->
+<!-- CHECKOUT MODAL -->
 <div id="checkoutModalOverlay" class="checkout-modal-overlay" style="display:none" onclick="if(event.target===this)closeCheckoutModal(false)">
   <div class="checkout-modal">
     <h2>Deine Kontaktdaten</h2>
@@ -598,7 +597,6 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
 
     <div class="checkout-divider"></div>
 
-    <!-- Zahlungsart: nur Barzahlung -->
     <div class="checkout-field">
       <label class="checkout-label">Zahlungsart</label>
       <div style="display:flex;align-items:center;gap:12px;background:var(--cream);border-radius:10px;padding:13px 16px;border:2px solid var(--green);margin-top:4px">
@@ -612,7 +610,6 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
 
     <div class="checkout-divider"></div>
 
-    <!-- Bestellübersicht -->
     <div class="checkout-summary">
       <div class="checkout-summary-title">Deine Bestellung</div>
       <div id="checkoutSummaryItems"></div>
@@ -622,7 +619,6 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
       </div>
     </div>
 
-    <!-- Demo-Hinweis im Checkout -->
     <div style="background:#fff8e1;border:1.5px solid #ffe082;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:0.78rem;color:#7a6010;display:flex;gap:8px;align-items:flex-start">
       <span style="font-size:1rem;flex-shrink:0">ℹ️</span>
       <span><strong>Demo-Projekt:</strong> Diese Bestellung ist nicht bindend. Es werden keine Daten dauerhaft gespeichert.</span>
@@ -658,14 +654,11 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
           <span class="success-total-amount" id="successTotalAmount"></span>
         </div>
       </div>
-
       <div class="success-info-grid" id="successInfoGrid"></div>
-
       <div class="success-email-note">
         <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" style="width:20px;height:20px;flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         <div class="success-email-note-text" id="successEmailNote"></div>
       </div>
-
       <div class="success-actions">
         <button class="success-btn-primary" onclick="closeSuccessModal(false)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
@@ -685,16 +678,9 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
       <p><strong>Hinweis:</strong> Dies ist ein Demo- und Portfolio-Projekt. Es findet kein echter Geschäftsbetrieb statt.</p>
     </div>
     <h3>Angaben gemäß §5 TMG</h3>
-    <p>
-      <strong>Humus Wurzn Fanshop</strong><br>
-      [Dein Name]<br>
-      [Straße und Hausnummer]<br>
-      [PLZ Ort]
-    </p>
+    <p><strong>Humus Wurzn Fanshop</strong><br>[Dein Name]<br>[Straße und Hausnummer]<br>[PLZ Ort]</p>
     <h3>Kontakt</h3>
-    <p>
-      E-Mail: [deine@email.de]
-    </p>
+    <p>E-Mail: [deine@email.de]</p>
     <h3>Haftungsausschluss</h3>
     <p>Diese Website ist ein nicht-kommerzielles Portfolio-Projekt. Es werden keine echten Bestellungen abgewickelt, keine Waren versandt und keine Zahlungen verarbeitet. Die dargestellten Produkte und Preise sind illustrativ.</p>
     <h3>Urheberrecht</h3>
@@ -743,6 +729,15 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
 var EJS_SERVICE    = 'service_6bd714f';
 var EJS_TPL_SHOP   = 'template_51qq61l';
 var EJS_TPL_KUNDE  = 'template_e35b9ze';
+
+/* ── HINTERGRUNDBILDER für Produktkarten ── */
+/* Dateiendung anpassen falls nötig (.jpg, .png, .webp) */
+var CARD_BG_IMGS = [
+  'HintergrundProdukt1.jpg',
+  'HintergrundProdukt2.jpg',
+  'HintergrundProdukt3.jpg',
+  'HintergrundProdukt4.jpg'
+];
 
 /* ── SVG ICONS ── */
 var ICONS = {
@@ -831,6 +826,11 @@ function getImgsForColor(p, colorKey){
 function cardImageHtml(p){
   var selC = selectedColors[p.id] || (p.colors ? p.colors[0] : null);
   var imgs = getImgsForColor(p, selC);
+
+  /* ── Hintergrundbild: deterministisch per Produkt-ID verteilt ── */
+  var bgImg = CARD_BG_IMGS[p.id % CARD_BG_IMGS.length];
+  var bgStyle = 'background-image:url(\'' + bgImg + '\');background-size:cover;background-position:center;';
+
   if(imgs.length > 0){
     var mainSrc = imgs[0];
     var hoverSrc = imgs.length > 1 ? imgs[1] : imgs[0];
@@ -841,15 +841,17 @@ function cardImageHtml(p){
         if(p.printColors[i].key===pcKey){ overlayHtml='<img class="print-overlay" src="'+p.printColors[i].overlay+'" alt="Druck">'; break; }
       }
     }
-    return '<div class="product-img-wrap">'
+    return '<div class="product-img-wrap" style="' + bgStyle + '">'
       +'<img class="product-img-main" src="'+mainSrc+'" alt="'+p.n+'" loading="lazy">'
       +'<img class="product-img-hover" src="'+hoverSrc+'" alt="'+p.n+' Hover" loading="lazy">'
       +overlayHtml+'</div>';
   }
-  return productVisual(p,selC,'product-visual')
+  /* Fallback: kein Foto → SVG-Icon mit Hintergrundbild */
+  return '<div class="product-img-wrap" style="' + bgStyle + '">'
+    + productVisual(p,selC,'product-visual')
     +'<div class="product-hover" style="background:var(--green)">'
     +(ICONS[p.icon]||'').replace(/currentColor/g,'#a8c45a')
-    +'<span class="hover-label">Details</span></div>';
+    +'<span class="hover-label">Details</span></div></div>';
 }
 
 function detailGalleryHtml(p,selC){
@@ -1246,7 +1248,6 @@ function doFinalSubmit(zahlungsart){
     anmerkung_block:note?'Anmerkung: '+note:''
   });
 
-  // Success modal
   document.getElementById('successOrderDate').textContent=now.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'});
   var itemsHtml=''; var cartSnapshot=cart.slice();
   for(var i=0;i<cartSnapshot.length;i++){
@@ -1274,7 +1275,7 @@ function doFinalSubmit(zahlungsart){
   document.body.style.overflow='hidden';
   history.pushState({panel:'success'}, '');
 
-  cart=[]; updateCart(); selectedPayment=null;
+  cart=[]; updateCart();
   ['co_vorname','co_nachname','co_email','co_tel','co_strasse','co_plz','co_ort','co_note'].forEach(function(id){
     var el=document.getElementById(id); if(el) el.value='';
   });
@@ -1311,21 +1312,16 @@ function showToast(msg){
   t.textContent=msg; t.classList.add('show');
   clearTimeout(tt); tt=setTimeout(function(){t.classList.remove('show');},2400);
 }
+
 /* ── HARDWARE BACK BUTTON (History API) ── */
 history.replaceState({panel:null}, '');
 
 window.addEventListener('popstate', function(e){
-  var state = e.state || {};
-
-  // Close whichever panel was open based on what state we're leaving
-  // We detect what's currently open and close it
   if(document.getElementById('detailPanel').classList.contains('open')){
-    closeDetail(true);
-    return;
+    closeDetail(true); return;
   }
   if(document.getElementById('checkoutModalOverlay').style.display === 'flex'){
-    closeCheckoutModal(true);
-    return;
+    closeCheckoutModal(true); return;
   }
   if(document.getElementById('drawer').classList.contains('open')){
     document.getElementById('drawer').classList.remove('open');
@@ -1333,16 +1329,13 @@ window.addEventListener('popstate', function(e){
     return;
   }
   if(document.getElementById('successModalWrap').classList.contains('open')){
-    closeSuccessModal(false);
-    return;
+    closeSuccessModal(false); return;
   }
-  // Legal modals
   var legalIds = ['impressum','datenschutz'];
   for(var i=0;i<legalIds.length;i++){
     var el = document.getElementById(legalIds[i]+'Overlay');
     if(el && el.style.display === 'flex'){
-      closeLegal(legalIds[i], true);
-      return;
+      closeLegal(legalIds[i], true); return;
     }
   }
 });
