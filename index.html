@@ -504,7 +504,7 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
   <div class="hero-content">
     <div class="hero-tag">Offizieller Fanshop</div>
     <h1>Humus<br><span>Wurzn</span></h1>
-    <p>Fanwear, Garten &amp;sontstiges — alles aus einer Hand</p>
+    <p>Fanwear, Garten &amp; Deko — alles aus einer Hand</p>
   </div>
 </div>
 
@@ -512,7 +512,7 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
   <button class="filter-btn active" onclick="doFilter('alle',this)">Alle</button>
   <button class="filter-btn" onclick="doFilter('mode',this)">Mode</button>
   <button class="filter-btn" onclick="doFilter('garten',this)">Garten</button>
-  <button class="filter-btn" onclick="doFilter('deko',this)">Deko</button>
+  <button class="filter-btn" onclick="doFilter('Deko',this)">Deko</button>
 </div>
 
 <div class="section-title">Beliebte Produkte</div>
@@ -781,7 +781,7 @@ var COLORBG = {
 var COLORFG = {
   weiss:'#414F1E', schwarz:'#a8c45a', gruen:'#a8c45a', beige:'#414F1E', hellgruen:'#f5f1e8'
 };
-var CATBG = {mode:'#E8EEE0', garten:'#E0EBE8',sontstiges:'#EDE8E0'};
+var CATBG = {mode:'#E8EEE0', garten:'#E0EBE8',Deko:'#EDE8E0'};
 
 var P = [
   {id:1,n:'Fan-Trikot',c:'mode',p:39.90,o:49.90,icon:'trikot',b:'SALE',desc:'Offizielles Humus Wurzn Fußball-Trikot. Atmungsaktives Funktionsmaterial — wahlweise mit eigenem Namen und Nummer bedruckt.',colors:null,sizes:['XS','S','M','L','XL','2XL','3XL'],personalize:true,imgs:['TrikotVorne.png','TrikotHinten.png'],rating:5},
@@ -797,12 +797,12 @@ var P = [
   {id:10,n:'Gartenhandschuhe',c:'garten',p:9.90,o:12.90,icon:'gloves',b:'COMING SOON',desc:'Latexbeschichtete Gartenhandschuhe.',colors:['gruen','beige','schwarz'],colorImgs:{gruen:['BaldVerfuegbar.png','HandschuheGruenHover.jpg'],beige:['HandschuheBeige.jpg','HandschuheBeigeHover.jpg'],schwarz:['HandschuheSchwarz.jpg','HandschuheSchwarzHover.jpg']},rating:4},
   {id:11,n:'Mini-Schaufel Set',c:'garten',p:13.90,o:0,icon:'minishovel',b:'COMING SOON',desc:'Set aus 2 Mini-Stahlschaufeln.',colors:null,imgs:['BaldVerfuegbar.png'],rating:5},
   {id:12,n:'Mini-Harke Set',c:'garten',p:11.90,o:14.90,icon:'minirake',b:'COMING SOON',desc:'Zwei kleine Harken für die Feinarbeit.',colors:null,imgs:['BaldVerfuegbar.png'],rating:4},
-  {id:13,n:'Übertopf Keramik',c:'deko',p:18.90,o:0,icon:'pot',b:'COMING SOON',desc:'Handgemachter Keramik-Übertopf.',colors:['gruen','weiss','beige'],colorImgs:{gruen:['BaldVerfuegbar.png','TopfGruenHover.jpg'],weiss:['TopfWeiss.jpg','TopfWeissHover.jpg'],beige:['TopfBeige.jpg','TopfBeigeHover.jpg']},rating:5},
-  {id:14,n:'Brotzeit-Brett',c:'deko',p:28.90,o:34.90,icon:'board',b:'COMING SOON',desc:'Massives Akazienholz-Brett.',colors:null,imgs:['BaldVerfuegbar.png'],rating:5},
-  {id:15,n:'Hängeampel',c:'deko',p:14.90,o:0,icon:'hanger',b:'COMING SOON',desc:'Makramee-Hängeampel.',colors:['weiss','beige'],colorImgs:{weiss:['BaldVerfuegbar.png','AmpelWeissHover.jpg'],beige:['AmpelBeige.jpg','AmpelBeigeHover.jpg']},rating:4},
-  {id:16,n:'Edelstahlflasche',c:'deko',p:24.90,o:29.90,icon:'bottle',b:'COMING SOON',desc:'Doppelwandige 500ml Trinkflasche.',colors:['schwarz','gruen','weiss'],colorImgs:{schwarz:['BaldVerfuegbar.png','FlascheSchwarzHover.jpg'],gruen:['FlascheGruen.jpg','FlascheGruenHover.jpg'],weiss:['FlascheWeiss.jpg','FlascheWeissHover.jpg']},rating:5},
-  {id:17,n:'Stickerpack',c:'deko',p:7.90,o:0,icon:'sticker',b:'COMING SOON',desc:'10 hochwertige Vinyl-Sticker.',colors:null,imgs:['BaldVerfuegbar.png'],rating:5},
-  {id:18,n:'Vogelhaus',c:'deko',p:32.90,o:39.90,icon:'birdhouse',b:'COMING SOON',desc:'Handgefertigtes Kiefernholz-Vogelhaus.',colors:null,imgs:['BaldVerfuegbar.png'],rating:4}
+  {id:13,n:'Übertopf Keramik',c:'Deko',p:18.90,o:0,icon:'pot',b:'COMING SOON',desc:'Handgemachter Keramik-Übertopf.',colors:['gruen','weiss','beige'],colorImgs:{gruen:['BaldVerfuegbar.png','TopfGruenHover.jpg'],weiss:['TopfWeiss.jpg','TopfWeissHover.jpg'],beige:['TopfBeige.jpg','TopfBeigeHover.jpg']},rating:5},
+  {id:14,n:'Brotzeit-Brett',c:'Deko',p:28.90,o:34.90,icon:'board',b:'COMING SOON',desc:'Massives Akazienholz-Brett.',colors:null,imgs:['BaldVerfuegbar.png'],rating:5},
+  {id:15,n:'Hängeampel',c:'Deko',p:14.90,o:0,icon:'hanger',b:'COMING SOON',desc:'Makramee-Hängeampel.',colors:['weiss','beige'],colorImgs:{weiss:['BaldVerfuegbar.png','AmpelWeissHover.jpg'],beige:['AmpelBeige.jpg','AmpelBeigeHover.jpg']},rating:4},
+  {id:16,n:'Edelstahlflasche',c:'Deko',p:24.90,o:29.90,icon:'bottle',b:'COMING SOON',desc:'Doppelwandige 500ml Trinkflasche.',colors:['schwarz','gruen','weiss'],colorImgs:{schwarz:['BaldVerfuegbar.png','FlascheSchwarzHover.jpg'],gruen:['FlascheGruen.jpg','FlascheGruenHover.jpg'],weiss:['FlascheWeiss.jpg','FlascheWeissHover.jpg']},rating:5},
+  {id:17,n:'Stickerpack',c:'Deko',p:7.90,o:0,icon:'sticker',b:'COMING SOON',desc:'10 hochwertige Vinyl-Sticker.',colors:null,imgs:['BaldVerfuegbar.png'],rating:5},
+  {id:18,n:'Vogelhaus',c:'Deko',p:32.90,o:39.90,icon:'birdhouse',b:'COMING SOON',desc:'Handgefertigtes Kiefernholz-Vogelhaus.',colors:null,imgs:['BaldVerfuegbar.png'],rating:4}
 ];
 
 var cart = [];
@@ -1077,7 +1077,7 @@ function closeDetail(fromPopstate){
 function getCatLabel(c){
   if(c==='mode') return 'Mode & Fanwear';
   if(c==='garten') return 'Gartenwerkzeug';
-  if(c==='deko') return 'Dekoration';
+  if(c==='Sonstiges') return 'Dekoration';
   return c;
 }
 
