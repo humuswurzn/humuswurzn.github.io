@@ -192,6 +192,10 @@ header{
 .color-dot{width:16px;height:16px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .15s,transform .15s;flex-shrink:0}
 .color-dot:hover,.color-dot.selected{border-color:var(--green-dark);transform:scale(1.2)}
 .print-dots{display:flex;align-items:center;gap:6px;padding:6px 12px 8px;flex-wrap:wrap;border-top:1px solid rgba(65,79,30,0.08);margin-top:2px}
+.variant-btns{display:flex;gap:5px;padding:4px 12px 8px;flex-wrap:wrap;border-top:1px solid rgba(65,79,30,0.08);margin-top:2px}
+.variant-btn{background:#fff;border:1.5px solid var(--cream2);border-radius:6px;padding:3px 8px;font-size:0.65rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s;color:var(--green-dark);font-family:"DM Sans",sans-serif;line-height:1.3}
+.variant-btn:hover{border-color:var(--green)}
+.variant-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
 .print-dots-label{font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#aaa;white-space:nowrap;font-family:"DM Sans",sans-serif}
 .print-dot{width:16px;height:16px;border-radius:4px;cursor:pointer;border:2px solid transparent;transition:border-color .15s,transform .15s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .print-dot:hover,.print-dot.selected{border-color:var(--green-dark);transform:scale(1.15)}
@@ -800,23 +804,24 @@ var P = [
   {id:4,n:'Beanie Wurzl',c:'mode',p:16.90,o:0,icon:'beanie',b:'COMING SOON',desc:'Gestrickte Mütze mit eingenähtem Humus Wurzn Logo. Einheitsgröße, angenehm warm.',colors:['schwarz','gruen','weiss','beige','hellgruen'],sizes:null,colorImgs:{schwarz:['BaldVerfuegbar.png','BeanieSchwarzHover.jpg'],gruen:['BeanieGruen.jpg','BeanieGruenHover.jpg'],weiss:['BeanieWeiss.jpg','BeanieWeissHover.jpg'],beige:['BeanieBeige.jpg','BeanieBeigeHover.jpg'],hellgruen:['BeanieHellgruen.jpg','BeanieHellgruenHover.jpg']},rating:4},
   {id:5,n:'Badeschlappen',c:'mode',p:19.90,o:24.90,icon:'slipper',b:'COMING SOON',desc:'Bequeme EVA-Schlappen mit Humus Wurzn Prägung. Rutschfeste Sohle.',colors:['gruen','schwarz','beige'],sizes:['36-37','38-39','40-41','42-43','44-45','46-47'],colorImgs:{gruen:['BaldVerfuegbar.png','SchlappenGruenHover.jpg'],schwarz:['SchlappenSchwarz.jpg','SchlappenSchwarzHover.jpg'],beige:['SchlappenBeige.jpg','SchlappenBeigeHover.jpg']},rating:4},
   {id:6,n:'Snapback Cap',c:'mode',p:22.90,o:0,icon:'cap',b:'COMING SOON',desc:'Klassische Snapback Cap mit gesticktem HW-Logo. Verstellbarer Riemen.',colors:['schwarz','gruen','weiss','beige'],sizes:null,colorImgs:{schwarz:['BaldVerfuegbar.png','CapSchwarzHover.jpg'],gruen:['CapGruen.jpg','CapGruenHover.jpg'],weiss:['CapWeiss.jpg','CapWeissHover.jpg'],beige:['CapBeige.jpg','CapBeigeHover.jpg']},rating:5},
-  {id:7,n:'Schaufel Pro',c:'garten',p:18.90,o:0,icon:'shovel',b:'NEU',desc:'Robuste Stahlschaufel mit ergonomischem Holzgriff.',colors:null,imgs:['Schaufel.png'],rating:4},
-  {id:8,n:'Harke Classic',c:'garten',p:15.90,o:19.90,icon:'rake',b:'COMING SOON',desc:'Fünfzinkige Stahlharke zum Lockern von Erde.',colors:null,imgs:['BaldVerfuegbar.png'],rating:4},
-  {id:9,n:'Gießkanne 8L',c:'garten',p:22.90,o:0,icon:'watercan',b:'COMING SOON',desc:'Zinkgießkanne mit langem Auslauf. 8 Liter.',colors:null,imgs:['BaldVerfuegbar.png'],rating:5},
+  {id:7,n:'Werkzeug',c:'garten',p:18.90,o:0,icon:'shovel',b:'NEU',desc:'Handgefertigtes Holzgriff-Werkzeug mit graviertem Humus Wurzn Logo. Einzeln oder als 3er-Set erhältlich.',colors:null,variants:['werkzeug','schaufel','harke','fugenjäter','set'],variantImgs:{werkzeug:['Werkzeug.png','Werkzeug_detail.png','Werkzeug_detail_2.png'],schaufel:['Schaufel.png','Werkzeug_detail_2.png'],harke:['Harke.png','Werkzeug_detail.png'],fugenjäter:['Fugenjäter.png','Werkzeug_detail.png'],set:['Werkzeug.png','Schaufel.png','Harke.png','Fugenjäter.png']},variantLabels:{werkzeug:'Set-Ansicht',schaufel:'Schaufel',harke:'Harke',fugenjäter:'Fugenjäter',set:'3er-Set'},variantPrices:{werkzeug:18.90,schaufel:18.90,harke:18.90,fugenjäter:18.90,set:49.90},imgs:['Werkzeug.png','Werkzeug_detail.png','Werkzeug_detail_2.png'],rating:5},
+  {id:8,n:'Kugelschreiber',c:'Deko',p:9.90,o:0,icon:'sticker',b:'NEU',desc:'Hochwertiger Kugelschreiber mit graviertem Humus Wurzn Logo. Perfektes Geschenk.',colors:null,imgs:['Kugelschreiber.png','Kugelschreiber_detail.png'],rating:5},
+  {id:9,n:'Gießkanne',c:'garten',p:22.90,o:0,icon:'watercan',b:'NEU',desc:'Hochwertige Gießkanne mit eingeprägtem Humus Wurzn Logo.',colors:null,imgs:['Giesskanne.png','Giesskanne_detail.png'],rating:5},
   {id:10,n:'Gartenhandschuhe',c:'garten',p:9.90,o:12.90,icon:'gloves',b:'COMING SOON',desc:'Latexbeschichtete Gartenhandschuhe.',colors:['gruen','beige','schwarz'],colorImgs:{gruen:['BaldVerfuegbar.png','HandschuheGruenHover.jpg'],beige:['HandschuheBeige.jpg','HandschuheBeigeHover.jpg'],schwarz:['HandschuheSchwarz.jpg','HandschuheSchwarzHover.jpg']},rating:4},
   {id:11,n:'Mini-Schaufel Set',c:'garten',p:13.90,o:0,icon:'minishovel',b:'COMING SOON',desc:'Set aus 2 Mini-Stahlschaufeln.',colors:null,imgs:['BaldVerfuegbar.png'],rating:5},
   {id:12,n:'Mini-Harke Set',c:'garten',p:11.90,o:14.90,icon:'minirake',b:'COMING SOON',desc:'Zwei kleine Harken für die Feinarbeit.',colors:null,imgs:['BaldVerfuegbar.png'],rating:4},
   {id:13,n:'Übertopf Keramik',c:'Deko',p:18.90,o:0,icon:'pot',b:'COMING SOON',desc:'Handgemachter Keramik-Übertopf.',colors:['gruen','weiss','beige'],colorImgs:{gruen:['BaldVerfuegbar.png','TopfGruenHover.jpg'],weiss:['TopfWeiss.jpg','TopfWeissHover.jpg'],beige:['TopfBeige.jpg','TopfBeigeHover.jpg']},rating:5},
-  {id:14,n:'Brotzeit-Brett',c:'Deko',p:28.90,o:34.90,icon:'board',b:'COMING SOON',desc:'Massives Akazienholz-Brett.',colors:null,imgs:['BaldVerfuegbar.png'],rating:5},
-  {id:15,n:'Hängeampel',c:'Deko',p:14.90,o:0,icon:'hanger',b:'COMING SOON',desc:'Makramee-Hängeampel.',colors:['weiss','beige'],colorImgs:{weiss:['BaldVerfuegbar.png','AmpelWeissHover.jpg'],beige:['AmpelBeige.jpg','AmpelBeigeHover.jpg']},rating:4},
-  {id:16,n:'Edelstahlflasche',c:'Deko',p:24.90,o:29.90,icon:'bottle',b:'COMING SOON',desc:'Doppelwandige 500ml Trinkflasche.',colors:['schwarz','gruen','weiss'],colorImgs:{schwarz:['BaldVerfuegbar.png','FlascheSchwarzHover.jpg'],gruen:['FlascheGruen.jpg','FlascheGruenHover.jpg'],weiss:['FlascheWeiss.jpg','FlascheWeissHover.jpg']},rating:5},
-  {id:17,n:'Stickerpack',c:'Deko',p:7.90,o:0,icon:'sticker',b:'COMING SOON',desc:'10 hochwertige Vinyl-Sticker.',colors:null,imgs:['BaldVerfuegbar.png'],rating:5},
+  {id:14,n:'Brotzeit-Brett',c:'Deko',p:28.90,o:34.90,icon:'board',b:'NEU',desc:'Massives Holzbrett mit graviertem Humus Wurzn Logo. Handgemacht.',colors:null,imgs:['Brotzeitbrett.png','Brotzeitbrett_detail.png'],rating:5},
+  {id:15,n:'Hängeampel',c:'Deko',p:14.90,o:0,icon:'hanger',b:'NEU',desc:'Handgefertigte Hängeampel aus Holz und Metall mit Humus Wurzn Gravur.',colors:null,imgs:['Haengeampel.png','Haengeampel_detail.png','Haengeampel_detail_2.png'],rating:5},
+  {id:16,n:'Flasche',c:'Deko',p:24.90,o:29.90,icon:'bottle',b:'NEU',desc:'Hochwertige Flasche mit eingeprägtem Humus Wurzn Logo.',colors:null,imgs:['Flasche.png','Flasche_detail.png'],rating:5},
+  {id:17,n:'Schlüsselanhänger',c:'Deko',p:7.90,o:0,icon:'sticker',b:'NEU',desc:'Handgefertigter Holz-Schlüsselanhänger mit Humus Wurzn Gravur.',colors:null,imgs:['Anhänger.png','Anhänger_detail.png'],rating:5},
   {id:18,n:'Vogelhaus',c:'Deko',p:32.90,o:39.90,icon:'birdhouse',b:'COMING SOON',desc:'Handgefertigtes Kiefernholz-Vogelhaus.',colors:null,imgs:['BaldVerfuegbar.png'],rating:4}
 ];
 
 var cart = [];
 var currentFilter = 'alle';
 var selectedColors = {};
+var selectedVariants = {};
 var selectedSizes = {};
 var selectedPrintColors = {};
 
@@ -840,6 +845,11 @@ function getImgsForColor(p, colorKey){
 function cardImageHtml(p){
   var selC = selectedColors[p.id] || (p.colors ? p.colors[0] : null);
   var imgs = getImgsForColor(p, selC);
+  // Override with variant images if applicable
+  if(p.variants){
+    var selV=selectedVariants[p.id]||p.variants[0];
+    if(p.variantImgs&&p.variantImgs[selV]) imgs=p.variantImgs[selV];
+  }
 
   /* ── Hintergrundbild: deterministisch per Produkt-ID verteilt ── */
   var bgImg = CARD_BG_IMGS[p.id % CARD_BG_IMGS.length];
@@ -915,6 +925,15 @@ function render(f){
       }
       colorHtml+='</div>';
     }
+    if(p.variants){
+      var selV=selectedVariants[p.id]||p.variants[0];
+      colorHtml+='<div class="variant-btns">';
+      for(var vi=0;vi<p.variants.length;vi++){
+        var vk=p.variants[vi];
+        colorHtml+='<button class="variant-btn'+(selV===vk?' active':'')+'" onclick="event.stopPropagation();selectVariantGrid('+p.id+',\''+vk+'\')">'+p.variantLabels[vk]+'</button>';
+      }
+      colorHtml+='</div>';
+    }
     if(p.printColors){
       var selPc=selectedPrintColors[p.id]||p.printColors[0].key;
       colorHtml+='<div class="print-dots">';
@@ -973,6 +992,17 @@ function buildDetail(p,selC){
     }
     colorSection+='</div><div class="detail-color-name" id="detailColorName">'+(selC?COLORS[selC].label:'')+'</div>';
   }
+  var variantSection='';
+  if(p.variants){
+    var selV=selectedVariants[p.id]||p.variants[0];
+    variantSection='<div class="detail-section-label">Ausführung wählen</div><div class="size-select" id="variantSelect">';
+    for(var vi=0;vi<p.variants.length;vi++){
+      var vk=p.variants[vi];
+      var vPrice=p.variantPrices?p.variantPrices[vk]:p.p;
+      variantSection+='<button class="size-btn'+(selV===vk?' active':'')+'" onclick="selectVariantDetail('+p.id+',\''+vk+'\')">'+p.variantLabels[vk]+(vk==='set'?' (+31€)':'')+'</button>';
+    }
+    variantSection+='</div>';
+  }
   var persSection='';
   if(p.personalize){
     persSection='<div class="detail-section-label">Ausführung</div>'
@@ -1015,7 +1045,7 @@ function buildDetail(p,selC){
     +'<div class="detail-name">'+p.n+'</div>'
     +'<div class="detail-sub">'+getCatLabel(p.c)+'</div>'
     +'<div class="detail-price-row"><span class="detail-price" id="detailPriceDisplay">'+fmt(p.p)+'</span>'+(p.o?'<span class="detail-price-old">'+fmt(p.o)+'</span>':'')+'</div>'
-    +colorSection+printColorSection+sizeSection+persSection
+    +colorSection+printColorSection+sizeSection+variantSection+persSection
     +'<div class="detail-section-label">Beschreibung</div>'
     +'<div class="detail-desc">'+p.desc+'</div>'
     +'<button class="detail-add-btn" onclick="addToCartFromDetail('+p.id+')">In den Warenkorb</button>';
@@ -1037,6 +1067,31 @@ function selectSize(id,sz){
   for(var i=0;i<btns.length;i++) btns[i].classList.toggle('active',btns[i].textContent===sz);
 }
 
+function selectVariantDetail(id,vk){
+  selectedVariants[id]=vk;
+  var p=null; for(var i=0;i<P.length;i++) if(P[i].id===id){p=P[i];break;}
+  if(!p) return;
+  // Update gallery
+  var imgs=p.variantImgs&&p.variantImgs[vk]?p.variantImgs[vk]:p.imgs||[];
+  var galleryContainer=document.querySelector('.detail-gallery');
+  if(galleryContainer&&imgs.length){
+    var mainImg=document.getElementById('detailMainImg');
+    if(mainImg) mainImg.src=imgs[0];
+    var thumbs=document.querySelectorAll('.gallery-thumb-img');
+    for(var i=0;i<thumbs.length&&i<imgs.length;i++) thumbs[i].src=imgs[i];
+  }
+  // Update price
+  var priceEl=document.getElementById('detailPriceDisplay');
+  if(priceEl&&p.variantPrices) priceEl.textContent=fmt(p.variantPrices[vk]);
+  // Update active btn
+  var btns=document.querySelectorAll('#variantSelect .size-btn');
+  for(var i=0;i<btns.length;i++) btns[i].classList.toggle('active',btns[i].textContent.startsWith(p.variantLabels[p.variants[i]]));
+  render(currentFilter);
+}
+function selectVariantGrid(id,vk){
+  selectedVariants[id]=vk;
+  render(currentFilter);
+}
 function selectPrintColorGrid(id,pcKey){
   selectedPrintColors[id]=pcKey;
   render(currentFilter);
