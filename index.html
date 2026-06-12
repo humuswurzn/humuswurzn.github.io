@@ -186,7 +186,7 @@ header{
 .product-img-wrap{width:100%;height:100%;position:relative;overflow:hidden;background-size:cover;background-position:center}
 /* ── GEÄNDERT: object-fit:contain damit PNG nicht abgeschnitten wird ── */
 .product-img-main{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .35s,transform .4s}
-.product-img-hover{width:100%;height:100%;object-fit:contain;display:block;position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s}
+.product-img-hover{width:100%;height:100%;object-fit:contain;display:block;position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s;z-index:2}
 .card:hover .product-img-main{opacity:0;transform:scale(1.08)}
 .card:hover .product-img-hover{opacity:1;transform:scale(1)}.card:hover .card-overlay{opacity:0}
 .card.no-hover:hover .product-img-main{opacity:1!important;transform:none!important}
@@ -273,7 +273,7 @@ header{
 .size-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
 .size-btn.sold-out{opacity:.35;cursor:not-allowed;text-decoration:line-through}
 .print-color-wrap{position:relative;width:100%;height:100%}
-.print-overlay{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;transition:opacity .25s}
+.print-overlay{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;transition:opacity .25s;z-index:3}
 .print-color-swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:border-color .15s,transform .15s;flex-shrink:0}
 .print-color-swatch:hover,.print-color-swatch.active{border-color:var(--green-dark);transform:scale(1.2)}
 .ci-personalized{font-size:0.65rem;color:var(--green-mid);font-weight:600;margin-top:2px}
