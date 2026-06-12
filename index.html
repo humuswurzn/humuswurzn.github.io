@@ -188,7 +188,8 @@ header{
 .product-img-main{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .35s,transform .4s}
 .product-img-hover{width:100%;height:100%;object-fit:contain;display:block;position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s;z-index:2}
 .card:hover .product-img-main{opacity:0;transform:scale(1.08)}
-.card:hover .product-img-hover{opacity:1;transform:scale(1)}.card:hover .card-overlay{opacity:0}
+.card:hover .product-img-hover{opacity:1;transform:scale(1)}
+.card:not(.no-hover):hover .print-overlay{opacity:0}
 .card.no-hover:hover .product-img-main{opacity:1!important;transform:none!important}
 .card.no-hover:hover .product-img-hover{opacity:0!important;transform:scale(1.06)!important}
 .card.no-hover .product-img-wrap::after{display:none}
@@ -897,7 +898,7 @@ function cardImageHtml(p){
     if(p.printColors){
       var pcKey = selectedPrintColors[p.id] || p.printColors[0].key;
       for(var i=0;i<p.printColors.length;i++){
-        if(p.printColors[i].key===pcKey){ overlayHtml='<img class="print-overlay'+(imgs.length>1?' card-overlay':'')+'" src="'+p.printColors[i].overlay+'" alt="Druck">'; break; }
+        if(p.printColors[i].key===pcKey){ overlayHtml='<img class="print-overlay" src="'+p.printColors[i].overlay+'" alt="Druck">'; break; }
       }
     }
     return '<div class="product-img-wrap" style="' + bgStyle + '">'
