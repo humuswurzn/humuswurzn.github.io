@@ -191,6 +191,10 @@ header{
 .color-dots{display:flex;gap:5px;padding:7px 12px 2px;flex-wrap:wrap}
 .color-dot{width:16px;height:16px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .15s,transform .15s;flex-shrink:0}
 .color-dot:hover,.color-dot.selected{border-color:var(--green-dark);transform:scale(1.2)}
+.print-dots{display:flex;align-items:center;gap:6px;padding:6px 12px 8px;flex-wrap:wrap;border-top:1px solid rgba(65,79,30,0.08);margin-top:2px}
+.print-dots-label{font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#aaa;white-space:nowrap;font-family:"DM Sans",sans-serif}
+.print-dot{width:16px;height:16px;border-radius:4px;cursor:pointer;border:2px solid transparent;transition:border-color .15s,transform .15s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.print-dot:hover,.print-dot.selected{border-color:var(--green-dark);transform:scale(1.15)}
 .card-body{padding:8px 12px 12px}
 .stars{font-size:0.65rem;color:var(--leaf);margin-bottom:3px;letter-spacing:1px}
 .card-name{font-size:0.88rem;font-weight:600;line-height:1.3;margin-bottom:2px;font-family:"Playfair Display",serif}
@@ -911,6 +915,17 @@ function render(f){
       }
       colorHtml+='</div>';
     }
+    if(p.printColors){
+      var selPc=selectedPrintColors[p.id]||p.printColors[0].key;
+      colorHtml+='<div class="print-dots">';
+      for(var pi=0;pi<p.printColors.length;pi++){
+        var pc=p.printColors[pi];
+        var pcBg=pc.key==='schwarz'?'#1a1a1a':'#f0ece4';
+        var pcBorder=pc.key==='schwarz'?'1px solid #555':'1px solid #ccc';
+        colorHtml+='<div class="print-dot'+(selPc===pc.key?' selected':'')+'" style="background:'+pcBg+';border:'+pcBorder+';outline:1px solid rgba(0,0,0,0.1)" title="Logo '+pc.label+'" onclick="event.stopPropagation();selectPrintColorGrid('+p.id+',\''+pc.key+'\')"></div>';
+      }
+      colorHtml+='</div>';
+    }
     html+='<div class="card" onclick="openDetail('+p.id+')">'
       +'<div class="card-img">'+badge+cardImageHtml(p)+'</div>'
       +colorHtml
@@ -1022,6 +1037,10 @@ function selectSize(id,sz){
   for(var i=0;i<btns.length;i++) btns[i].classList.toggle('active',btns[i].textContent===sz);
 }
 
+function selectPrintColorGrid(id,pcKey){
+  selectedPrintColors[id]=pcKey;
+  render(currentFilter);
+}
 function selectPrintColor(id,pcKey){
   selectedPrintColors[id]=pcKey;
   var p=null; for(var i=0;i<P.length;i++) if(P[i].id===id){p=P[i];break;}
