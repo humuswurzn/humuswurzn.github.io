@@ -181,6 +181,9 @@ header{
 .product-img-hover{width:100%;height:100%;object-fit:contain;display:block;position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s}
 .card:hover .product-img-main{opacity:0;transform:scale(1.08)}
 .card:hover .product-img-hover{opacity:1;transform:scale(1)}.card:hover .card-overlay{opacity:0}
+.card:hover .no-hover .product-img-main{opacity:1;transform:none}
+.card:hover .no-hover .product-img-hover{opacity:0;transform:scale(1.06)}
+.no-hover::after{display:none!important}
 .product-img-wrap::after{content:'Details';position:absolute;bottom:10px;left:50%;transform:translateX(-50%) translateY(6px);background:rgba(65,79,30,.82);color:var(--leaf);font-size:0.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;font-family:"DM Sans",sans-serif;white-space:nowrap}
 .card:hover .product-img-wrap::after{opacity:1;transform:translateX(-50%) translateY(0)}
 .product-hover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:var(--green);opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s}
@@ -889,7 +892,7 @@ function cardImageHtml(p){
         if(p.printColors[i].key===pcKey){ overlayHtml='<img class="print-overlay card-overlay" src="'+p.printColors[i].overlay+'" alt="Druck">'; break; }
       }
     }
-    return '<div class="product-img-wrap" style="' + bgStyle + '">'
+    return '<div class="product-img-wrap' + (imgs.length < 2 ? ' no-hover' : '') + '" style="' + bgStyle + '">'
       +'<img class="product-img-main" src="'+mainSrc+'" alt="'+p.n+'" loading="lazy">'
       +'<img class="product-img-hover" src="'+hoverSrc+'" alt="'+p.n+' Hover" loading="lazy">'
       +overlayHtml+'</div>';
