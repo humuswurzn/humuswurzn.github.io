@@ -51,7 +51,7 @@ header{
   position: sticky; top: 0; z-index: 100;
   display: flex; flex-direction: column;
   border-bottom: 2px solid var(--green-mid);
-  overflow: hidden;
+  overflow: visible;
 }
 .header-pattern {
   position: absolute; inset: 0; pointer-events: none;
@@ -117,6 +117,14 @@ header{
   background:var(--leaf);
   border-radius:2px 2px 0 0;
 }
+.nav-item{position:relative}
+.nav-dropdown{position:fixed;background:var(--green-dark);border:1px solid rgba(255,255,255,.12);border-top:2px solid var(--leaf);border-radius:0 0 12px 12px;min-width:160px;z-index:500;overflow:hidden;opacity:0;pointer-events:none;transform:translateY(-4px);transition:opacity .18s,transform .18s;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.nav-item.open .nav-dropdown{opacity:1;pointer-events:all;transform:translateY(0)}
+.nav-dropdown-item{display:block;padding:12px 20px;color:rgba(255,255,255,.7);font-size:0.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;font-family:"DM Sans",sans-serif;cursor:pointer;transition:background .15s,color .15s;border:none;background:none;width:100%;text-align:left}
+.nav-dropdown-item:hover{background:rgba(255,255,255,.08);color:var(--leaf)}
+.nav-dropdown-item.active{color:var(--leaf)}
+.nav-link-arrow{font-size:0.55rem;margin-left:4px;display:inline-block;transition:transform .2s;vertical-align:middle}
+.nav-item.open .nav-link-arrow{transform:rotate(180deg)}
 
 /* HERO */
 .hero {
@@ -499,7 +507,15 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
   </div>
   <nav class="main-nav">
     <a class="nav-link" href="home.html">Start</a>
-    <a class="nav-link active" href="index.html">Shop</a>
+    <div class="nav-item" id="shopNavItem">
+      <span class="nav-link active" style="cursor:pointer;display:flex;align-items:center" onclick="toggleShopDropdown(event)">Shop<span class="nav-link-arrow">▼</span></span>
+      <div class="nav-dropdown" id="shopDropdown">
+        <button class="nav-dropdown-item active" id="ddAll" onclick="filterFromNav('alle')">Alle</button>
+        <button class="nav-dropdown-item" id="ddMode" onclick="filterFromNav('mode')">Mode</button>
+        <button class="nav-dropdown-item" id="ddGarten" onclick="filterFromNav('garten')">Garten</button>
+        <button class="nav-dropdown-item" id="ddDeko" onclick="filterFromNav('Deko')">Deko</button>
+      </div>
+    </div>
   </nav>
 </header>
 
@@ -1436,6 +1452,33 @@ window.addEventListener('popstate', function(e){
 });
 
 render('alle');
+
+function toggleShopDropdown(e){
+  e.stopPropagation();
+  var item=document.getElementById('shopNavItem');
+  var dd=document.getElementById('shopDropdown');
+  var rect=item.getBoundingClientRect();
+  dd.style.left=rect.left+'px';
+  dd.style.top=rect.bottom+'px';
+  item.classList.toggle('open');
+}
+document.addEventListener('click',function(){
+  var item=document.getElementById('shopNavItem');
+  if(item) item.classList.remove('open');
+});
+function filterFromNav(f){
+  document.getElementById('shopNavItem').classList.remove('open');
+  var labels={alle:'Alle',mode:'Mode',garten:'Garten',Deko:'Deko'};
+  var filterBtns=document.querySelectorAll('.filter-btn');
+  for(var i=0;i<filterBtns.length;i++) filterBtns[i].classList.toggle('active',filterBtns[i].textContent===labels[f]);
+  var ids={alle:'ddAll',mode:'ddMode',garten:'ddGarten',Deko:'ddDeko'};
+  ['ddAll','ddMode','ddGarten','ddDeko'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.classList.toggle('active',id===ids[f]);
+  });
+  currentFilter=f;
+  render(f);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 </script>
 </body>
 </html>
