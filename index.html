@@ -155,6 +155,12 @@ header{
 .hero h1 span{color:var(--leaf)}
 .hero p{margin-top:10px;font-size:0.9rem;opacity:0.55;letter-spacing:.5px}
 
+/* WETTSCHEIN BANNER */
+.wettschein-banner{background:var(--cream2);padding:20px 14px;border-bottom:1px solid rgba(65,79,30,0.1)}
+.wettschein-inner{max-width:700px;margin:0 auto}
+.wettschein-label{font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:10px;font-family:"DM Sans",sans-serif}
+.wettschein-img{width:100%;border-radius:12px;box-shadow:var(--shadow);display:block}
+
 /* FILTER */
 .filter-bar{padding:20px 14px 8px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
 .filter-bar::-webkit-scrollbar{display:none}
@@ -532,6 +538,13 @@ footer{text-align:center;padding:32px 16px;background:var(--green-dark);color:rg
     <div class="hero-tag">Offizieller Fanshop</div>
     <h1>Humus<br><span>Wurzn</span></h1>
     <p>Fanwear, Garten &amp; Deko — alles aus einer Hand</p>
+  </div>
+</div>
+
+<div class="wettschein-banner">
+  <div class="wettschein-inner">
+    <div class="wettschein-label">🐸 Vereinslauf 2026</div>
+    <img src="Wettschein.png" alt="Frosch-Wetten Wettschein" class="wettschein-img">
   </div>
 </div>
 
@@ -1454,7 +1467,13 @@ window.addEventListener('popstate', function(e){
   }
 });
 
-render('alle');
+var initFilter = new URLSearchParams(window.location.search).get('filter') || 'alle';
+var initBtn = null;
+document.querySelectorAll('.filter-btn').forEach(function(b){
+  if(b.textContent.toLowerCase()===({'alle':'alle','mode':'mode','garten':'garten','deko':'deko'}[initFilter.toLowerCase()]||initFilter.toLowerCase())) initBtn=b;
+});
+if(initBtn){ document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');}); initBtn.classList.add('active'); }
+render(initFilter);
 
 function toggleShopDropdown(e){
   e.stopPropagation();
