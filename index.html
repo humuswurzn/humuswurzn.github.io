@@ -177,6 +177,8 @@ header{
 /* CARD */
 .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .3s,box-shadow .3s;position:relative;border:1.5px solid rgba(65,79,30,.07);display:flex;flex-direction:column}
 .card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--shadow-hover)}
+.card.no-hover{cursor:default}
+.card.no-hover:hover{transform:none;box-shadow:var(--shadow)}
 .card-img{position:relative;aspect-ratio:1;overflow:hidden}
 .product-visual{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:opacity .3s,transform .4s}
 .product-visual svg{width:52%;height:52%;transition:transform .3s}
@@ -187,9 +189,9 @@ header{
 .product-img-hover{width:100%;height:100%;object-fit:contain;display:block;position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s}
 .card:hover .product-img-main{opacity:0;transform:scale(1.08)}
 .card:hover .product-img-hover{opacity:1;transform:scale(1)}.card:hover .card-overlay{opacity:0}
-.card:hover .no-hover .product-img-main{opacity:1;transform:none}
-.card:hover .no-hover .product-img-hover{opacity:0;transform:scale(1.06)}
-.no-hover::after{display:none!important}
+.card.no-hover:hover .product-img-main{opacity:1;transform:none}
+.card.no-hover:hover .product-img-hover{opacity:0;transform:scale(1.06)}
+.card.no-hover .product-img-wrap::after{display:none}
 .product-img-wrap::after{content:'Details';position:absolute;bottom:10px;left:50%;transform:translateX(-50%) translateY(6px);background:rgba(65,79,30,.82);color:var(--leaf);font-size:0.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;font-family:"DM Sans",sans-serif;white-space:nowrap}
 .card:hover .product-img-wrap::after{opacity:1;transform:translateX(-50%) translateY(0)}
 .product-hover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:var(--green);opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s}
@@ -830,7 +832,7 @@ var P = [
   {id:7,n:'Gartenwerkzeug',c:'garten',p:19.90,o:0,icon:'shovel',b:'NEU',desc:'Holzgriff-Werkzeug mit graviertem Humus Wurzn Logo. Einzeln oder als 3er-Set erhältlich.',colors:null,variants:['set','schaufel','harke','fugenjäter'],variantImgs:{set:['Werkzeug.png','Werkzeug_detail.png','Werkzeug_detail_2.png'],schaufel:['Schaufel.png'],harke:['Harke.png'],fugenjäter:['Fugenjäter.png']},variantLabels:{set:'Set',schaufel:'Schaufel',harke:'Harke',fugenjäter:'Fugenjäter'},variantPrices:{set:19.90,schaufel:6.90,harke:6.90,fugenjäter:6.90},imgs:['Werkzeug.png','Werkzeug_detail.png','Werkzeug_detail_2.png'],rating:5},
   {id:8,n:'Kugelschreiber',c:'Deko',p:2.90,o:0,icon:'sticker',b:'NEU',desc:'Hochwertiger Kugelschreiber mit graviertem Humus Wurzn Logo. Perfektes Geschenk.',colors:null,imgs:['Kugelschreiber.png','Kugelschreiber_detail.png'],rating:5},
   {id:9,n:'Gießkanne',c:'garten',p:7.90,o:0,icon:'watercan',b:'NEU',desc:'Gießkanne mit aufgeklebten Holz Humus Wurzn Logo.',colors:null,imgs:['Giesskanne.png','Giesskanne_detail.png'],rating:5},
-  {id:14,n:'Brotzeit-Brett',c:'Deko',p:9.90,o:34.90,icon:'board',b:'SALE',desc:'Massives Holzbrett mit graviertem Humus Wurzn Logo. Handgemacht.',colors:null,imgs:['Brotzeitbrett.png','Brotzeitbrett_detail.png'],rating:5},
+  {id:14,n:'Brotzeit-Brett',c:'Deko',p:9.90,o:34.90,icon:'board',b:'NEU',desc:'Massives Holzbrett mit graviertem Humus Wurzn Logo. Handgemacht.',colors:null,imgs:['Brotzeitbrett.png','Brotzeitbrett_detail.png'],rating:5},
   {id:15,n:'Hängeampel',c:'Deko',p:22.90,o:0,icon:'hanger',b:'NEU',desc:'Handgefertigte Hängeampel aus Holz und Metall mit Humus Wurzn Gravur. Pflanze und Topf sind nicht im Lieferumfang enthalten.',colors:null,imgs:['Haengeampel.png','Haengeampel_detail.png','Haengeampel_detail_2.png'],rating:5},
   {id:16,n:'Flasche',c:'Deko',p:14.90,o:29.90,icon:'bottle',b:'SALE',desc:'Hochwertige Flasche mit eingeprägtem Humus Wurzn Logo.',colors:null,imgs:['Flasche.png','Flasche_detail.png'],rating:5},
   {id:17,n:'Schlüsselanhänger',c:'Deko',p:2.90,o:0,icon:'sticker',b:'NEU',desc:'Holz-Schlüsselanhänger mit Humus Wurzn Gravur.',colors:null,imgs:['Anhänger.png','Anhänger_detail.png'],rating:5},
@@ -898,7 +900,7 @@ function cardImageHtml(p){
         if(p.printColors[i].key===pcKey){ overlayHtml='<img class="print-overlay card-overlay" src="'+p.printColors[i].overlay+'" alt="Druck">'; break; }
       }
     }
-    return '<div class="product-img-wrap' + (imgs.length < 2 ? ' no-hover' : '') + '" style="' + bgStyle + '">'
+    return '<div class="product-img-wrap" style="' + bgStyle + '">'
       +'<img class="product-img-main" src="'+mainSrc+'" alt="'+p.n+'" loading="lazy">'
       +'<img class="product-img-hover" src="'+hoverSrc+'" alt="'+p.n+' Hover" loading="lazy">'
       +overlayHtml+'</div>';
@@ -936,6 +938,22 @@ function switchGalleryImg(src,thumbEl){
   if(thumbEl) thumbEl.classList.add('active');
   var wrap=m?m.parentNode:null;
   if(wrap){var ov=wrap.querySelector('.print-overlay');if(ov){var isFront=(thumbs.length>0&&thumbEl===thumbs[0]);ov.style.opacity=isFront?'1':'0';}}
+}
+
+function hasHoverContent(p){
+  if(p.b==='COMING SOON') return false;
+  // variants with multiple images
+  if(p.variants && p.variantImgs){
+    var selV=selectedVariants[p.id]||p.variants[0];
+    var vi=p.variantImgs[selV];
+    if(vi && vi.length>1) return true;
+    // check if ANY variant has multiple images
+    for(var k in p.variantImgs){ if(p.variantImgs[k].length>1) return true; }
+    return false;
+  }
+  var selC=selectedColors[p.id]||(p.colors?p.colors[0]:null);
+  var imgs=getImgsForColor(p,selC);
+  return imgs.length>1;
 }
 
 function render(f){
@@ -978,7 +996,7 @@ function render(f){
       }
       colorHtml+='</div>';
     }
-    html+='<div class="card" onclick="openDetail('+p.id+')">'
+    html+='<div class="card'+(hasHoverContent(p)?'':' no-hover')+'" onclick="openDetail('+p.id+')">'
       +'<div class="card-img">'+badge+cardImageHtml(p)+'</div>'
       +'<div class="card-body">'
       +colorHtml
