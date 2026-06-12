@@ -942,18 +942,15 @@ function switchGalleryImg(src,thumbEl){
 
 function hasHoverContent(p){
   if(p.b==='COMING SOON') return false;
-  // variants with multiple images
   if(p.variants && p.variantImgs){
     var selV=selectedVariants[p.id]||p.variants[0];
     var vi=p.variantImgs[selV];
-    if(vi && vi.length>1) return true;
-    // check if ANY variant has multiple images
-    for(var k in p.variantImgs){ if(p.variantImgs[k].length>1) return true; }
+    if(vi && vi.length>1 && vi[0]!==vi[1]) return true;
     return false;
   }
   var selC=selectedColors[p.id]||(p.colors?p.colors[0]:null);
   var imgs=getImgsForColor(p,selC);
-  return imgs.length>1;
+  return imgs.length>1 && imgs[0]!==imgs[1];
 }
 
 function render(f){
