@@ -192,6 +192,7 @@ header{
 .card.no-hover:hover .product-img-main{opacity:1;transform:none}
 .card.no-hover:hover .product-img-hover{opacity:0;transform:scale(1.06)}
 .card.no-hover .product-img-wrap::after{display:none}
+.card.no-hover:hover .print-overlay{opacity:1}
 .product-img-wrap::after{content:'Details';position:absolute;bottom:10px;left:50%;transform:translateX(-50%) translateY(6px);background:rgba(65,79,30,.82);color:var(--leaf);font-size:0.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;font-family:"DM Sans",sans-serif;white-space:nowrap}
 .card:hover .product-img-wrap::after{opacity:1;transform:translateX(-50%) translateY(0)}
 .product-hover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:var(--green);opacity:0;transform:scale(1.06);transition:opacity .35s,transform .4s}
@@ -945,12 +946,14 @@ function hasHoverContent(p){
   if(p.variants && p.variantImgs){
     var selV=selectedVariants[p.id]||p.variants[0];
     var vi=p.variantImgs[selV];
-    if(vi && vi.length>1 && vi[0]!==vi[1]) return true;
+    if(vi && vi.length>1) return true;
+    // check if ANY variant has multiple images
+    for(var k in p.variantImgs){ if(p.variantImgs[k].length>1) return true; }
     return false;
   }
   var selC=selectedColors[p.id]||(p.colors?p.colors[0]:null);
   var imgs=getImgsForColor(p,selC);
-  return imgs.length>1 && imgs[0]!==imgs[1];
+  return imgs.length>1;
 }
 
 function render(f){
