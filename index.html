@@ -897,7 +897,7 @@ function cardImageHtml(p){
     if(p.printColors){
       var pcKey = selectedPrintColors[p.id] || p.printColors[0].key;
       for(var i=0;i<p.printColors.length;i++){
-        if(p.printColors[i].key===pcKey){ overlayHtml='<img class="print-overlay" src="'+p.printColors[i].overlay+'" alt="Druck">'; break; }
+        if(p.printColors[i].key===pcKey){ overlayHtml='<img class="print-overlay'+(imgs.length>1?' card-overlay':'')+'" src="'+p.printColors[i].overlay+'" alt="Druck">'; break; }
       }
     }
     return '<div class="product-img-wrap" style="' + bgStyle + '">'
